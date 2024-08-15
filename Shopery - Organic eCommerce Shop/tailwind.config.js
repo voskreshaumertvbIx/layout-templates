@@ -23,7 +23,7 @@ export default {
         Heading02: '48px',
         Heading03: '40px',
         Heading04: '36px',
-        Heading05: '32p,'
+        Heading05: '32px,'
 
       },
       fontWeight: {
