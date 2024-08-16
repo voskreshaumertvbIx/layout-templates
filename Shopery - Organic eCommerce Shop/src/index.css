@@ -39,5 +39,13 @@
 
 
 body {
+  position: relative;
+  width: 1320px;
+  margin: 0 auto;
+
+  background-color: var(White);
   font-family: 'Poppins', sans-serif;
+}
+.body-wide {
+  width: 1920px;
 }

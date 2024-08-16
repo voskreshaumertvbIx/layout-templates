@@ -6,7 +6,8 @@ type ButtonProps = {
   size?: "small" | "medium" | "large";
   variant?: "fill" | "border" | "ghost";
   hoverEffect?: boolean;
-  icon?: React.ReactNode;
+  icon?: boolean;
+  defaultIcon?: string;
   onClick?: () => void;
   className?: string;
 };
@@ -16,12 +17,13 @@ const Button: FC<ButtonProps> = ({
   size = "medium",
   variant = "fill",
   hoverEffect = true,
-  icon,
+  icon = false,
+  defaultIcon = "./img/icon/Group.svg",
   onClick,
   className,
 }) => {
   const baseClasses =
-    "rounded-full font-bold focus:outline-none transition-colors inline-flex items-center justify-center ";
+    "rounded-full font-bold focus:outline-none transition-colors inline-flex items-center justify-center";
 
   const sizeClasses = {
     small: "w-[126px] h-[35px] text-BodyTiny font-semibold",
@@ -31,13 +33,13 @@ const Button: FC<ButtonProps> = ({
 
   const variantClasses = {
     fill: "bg-Primary text-White",
-    border: "border-2 border-Primary text-Primary",
+    border: "border-Primary text-Primary",
     ghost: "bg-transparent text-Primary",
   };
 
   const hoverClasses = {
     fill: "hover:bg-HardPrimary",
-    border: "hover:bg-Primary hover:text-White",
+    border: "hover:text-HardPrimary",
     ghost: "hover:bg-green-gray-100",
   };
 
@@ -50,10 +52,22 @@ const Button: FC<ButtonProps> = ({
   );
 
   return (
-    <button className={buttonClasses} onClick={onClick}>
-      <span>{children}</span>
-      {icon && <span className="ml-2">{icon}</span>}
-    </button>
+    <div className="flex items-center">
+      <button className={buttonClasses} onClick={onClick}>
+        <div className="flex items-center justify-center">
+          <span>{children}</span>
+          {icon && (
+            <div className="ml-2">
+              <img
+                src={defaultIcon}
+                alt="icon"
+                className="h-full w-full object-contain"
+              />
+            </div>
+          )}
+        </div>
+      </button>
+    </div>
   );
 };
 
