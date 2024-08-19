@@ -45,7 +45,11 @@ body {
 
   background-color: var(White);
   font-family: 'Poppins', sans-serif;
+
+
+ 
 }
-.body-wide {
-  width: 1920px;
+
+body::-webkit-scrollbar {
+  display: none;
 }

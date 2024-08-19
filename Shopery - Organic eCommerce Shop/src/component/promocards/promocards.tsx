@@ -54,8 +54,8 @@ const Promocards = () => {
 
         <div className="relative">
           <img src="/img/promocards/submain2.png" alt="" />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-White">
-            <p className="text-BodySmall uppercase font-medium">Best Deal</p>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-White">
+            <p className="text-BodySmall font-medium uppercase">Best Deal</p>
             <h2 className="text-Heading05 font-semibold">
               Special Products <br /> Deal of the Month
             </h2>

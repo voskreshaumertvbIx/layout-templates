@@ -12,7 +12,7 @@ const nav_links = [
 
 const Navbar: React.FC = () => {
   return (
-    <div className="fixed left-0 top-[135px] z-50 h-16 w-full bg-gray-900">
+    <div className="fixed left-0 top-[135px] z-50 h-16 w-full bg-gray-900 ">
       <nav className="container mx-auto flex h-full w-[1320px] items-center justify-between">
        
         <div className="flex">
