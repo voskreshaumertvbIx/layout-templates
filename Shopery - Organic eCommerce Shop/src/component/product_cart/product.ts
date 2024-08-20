@@ -64,4 +64,21 @@ export const products = [
     price: 34.00,
     
   },
+  {
+    id: 11,
+    name: "Red Tomatos",
+    image: "img/Products/tomato.png",
+    price: 20.99,
+    discountPrice:9.00,
+    sale: 50,
+    
+  },
+  {
+    id: 12,
+    name: "Surjapur Mango",
+    image: "img/Products/mango.png",
+    price: 34.00,
+    
+  },
+
 ];

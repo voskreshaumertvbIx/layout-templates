@@ -17,7 +17,7 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ products, onAddToCart }) => {
   return (
-    <div>
+    <>
       <div className="mb-8 mt-[50px] flex justify-between">
         <h1 className="flex- text-Heading05 font-semibold text-gray-900">
           Popular Categories
@@ -38,7 +38,7 @@ const ProductList: React.FC<ProductListProps> = ({ products, onAddToCart }) => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

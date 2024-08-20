@@ -17,7 +17,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
     <div
-      className="relative box-border border-b border-r border-gray-100"
+      className="relative box-border border border-gray-100"
       key={product.id}
     >
       {product.sale && (
@@ -25,12 +25,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
           Sale {product.sale}%
         </Badge>
       )}
+      <div className="h-[254px] overflow-hidden">
       <img
         src={product.image}
-        className="h-[230px] w-[254px]"
+        className=""
         alt={product.name}
-      />
-      <div className="mb-3 flex items-center justify-between p-3">
+      /></div>
+      <div className="mb-3 flex items-center justify-between px-3">
         <div>
           <h3 className="text-BodySmall font-regular text-gray-700">
             {product.name}
@@ -49,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
               ${product.price.toFixed(2)}
             </span>
           )}
-          <img src="img/Products/Rating.png" className="mt-1." alt="rating" />
+          <img src="img/Products/Rating.png" className="" alt="rating" />
         </div>
         <BasketIcon onClick={onAddToCart} />
       </div>

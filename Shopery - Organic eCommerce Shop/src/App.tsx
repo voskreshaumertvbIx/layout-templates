@@ -8,8 +8,13 @@ import TopBar from "./component/Topbar/topbar";
 import ProductList from "./component/product_list/product_list";
 import CartManager from "./component/product_cart/productManager";
 import { products } from "./component/product_cart/product";
+import BestDeals from "./component/best_deals/best_deals";
+import HotDeals from "./component/hot_deals/hot_deals";
 
 const App: React.FC = () => {
+ 
+  const filteredProducts = products.filter(product => product.id <= 10);
+
   return (
     <>
       <TopBar />
@@ -21,7 +26,11 @@ const App: React.FC = () => {
             <Promocards />
             <Support />
             <PopularCategories />
-            <ProductList products={products} onAddToCart={handleAddToCart} />
+            {filteredProducts.length > 0 && (
+              <ProductList products={filteredProducts} onAddToCart={handleAddToCart} />
+            )}
+            <BestDeals />
+            <HotDeals onAddToCart={handleAddToCart} products={products} />
           </>
         )}
       </CartManager>
