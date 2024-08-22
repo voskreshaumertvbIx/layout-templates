@@ -10,11 +10,15 @@ import CartManager from "./component/product_cart/productManager";
 import { products } from "./component/product_cart/product";
 import BestDeals from "./component/best_deals/best_deals";
 import HotDeals from "./component/hot_deals/hot_deals";
+import FeaturedProducts from "./component/featured_products/featured_products";
+import SectionHeader from "./component/Reusable component/sectionHeader";
+import LatestNews from "./component/LatestNews/latestnews";
+import ClientTestimonials from "./component/client_testimonials/client_testimonials";
 
 const App: React.FC = () => {
  
   const filteredProducts = products.filter(product => product.id <= 10);
-
+  const featuredProducts = products.filter(product => product.id <= 5);
   return (
     <>
       <TopBar />
@@ -26,11 +30,16 @@ const App: React.FC = () => {
             <Promocards />
             <Support />
             <PopularCategories />
+            <SectionHeader linkText="View All" title="Popular Products" linkUrl=''/>
+
             {filteredProducts.length > 0 && (
               <ProductList products={filteredProducts} onAddToCart={handleAddToCart} />
             )}
             <BestDeals />
             <HotDeals onAddToCart={handleAddToCart} products={products} />
+            <FeaturedProducts onAddToCart={handleAddToCart} products={featuredProducts}/>
+            <LatestNews/>
+            <ClientTestimonials/>
           </>
         )}
       </CartManager>

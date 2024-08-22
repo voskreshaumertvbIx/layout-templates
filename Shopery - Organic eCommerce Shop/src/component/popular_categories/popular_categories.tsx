@@ -1,20 +1,11 @@
 import React from "react";
 import { categories } from "./categories";
+import SectionHeader from "../Reusable component/sectionHeader";
 
 const PopularCategories = () => {
   return (
     <section className="mt-[60px]">
-      <div className="flex justify-between mb-8">
-        <h1 className="text-Heading05 font-semibold text-gray-900">
-          Popular Categories
-        </h1>
-        <div className="flex items-center justify-center space-x-3">
-          <a href="" className="text-BodyMedium font-medium text-Primary">
-            View All{" "}
-          </a>
-          <img className="w-[15px]" src="/img/icon/Group.svg" alt="" />
-        </div>
-      </div>
+    <SectionHeader linkText="View All" linkUrl="" title="Popular Categories"/>
       <div className="grid grid-cols-6 gap-6">
         {categories.map(({ name, src }) => {
           return (

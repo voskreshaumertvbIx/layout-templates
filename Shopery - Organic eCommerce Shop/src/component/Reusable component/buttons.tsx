@@ -8,6 +8,7 @@ type ButtonProps = {
   hoverEffect?: boolean;
   icon?: boolean;
   defaultIcon?: string;
+  fillIcon?: string;
   onClick?: () => void;
   className?: string;
 };
@@ -19,6 +20,7 @@ const Button: FC<ButtonProps> = ({
   hoverEffect = true,
   icon = false,
   defaultIcon = "./img/icon/Group.svg",
+  fillIcon = './img/whiteArrow.png',
   onClick,
   className,
 }) => {
@@ -59,7 +61,7 @@ const Button: FC<ButtonProps> = ({
           {icon && (
             <div className="ml-2">
               <img
-                src={defaultIcon}
+                src={variant === 'border' ? defaultIcon : fillIcon }
                 alt="icon"
                 className="h-full w-full object-contain"
               />
