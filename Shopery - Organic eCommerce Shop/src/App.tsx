@@ -14,6 +14,11 @@ import FeaturedProducts from "./component/featured_products/featured_products";
 import SectionHeader from "./component/Reusable component/sectionHeader";
 import LatestNews from "./component/LatestNews/latestnews";
 import ClientTestimonials from "./component/client_testimonials/client_testimonials";
+import Companys from "./component/companys/companys";
+import InstagramGallery from "./component/instagranGallary/instagramgallery";
+import Newsletter from "./component/newsletter/newsletter";
+import Footer from "./component/footer/footer";
+
 
 const App: React.FC = () => {
  
@@ -40,6 +45,11 @@ const App: React.FC = () => {
             <FeaturedProducts onAddToCart={handleAddToCart} products={featuredProducts}/>
             <LatestNews/>
             <ClientTestimonials/>
+            <Companys/>
+            <InstagramGallery/>
+            <Newsletter/>
+            <Footer/>
+           
           </>
         )}
       </CartManager>

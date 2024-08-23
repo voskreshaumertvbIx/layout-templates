@@ -36,19 +36,19 @@
   font-weight: 700;
   font-style: normal;
 }
-
+* {
+  box-sizing: border-box;
+}
 
 body {
   position: relative;
+  margin: auto;
+  padding: 0;
   width: 1320px;
-  margin: 0 auto;
-
-  background-color: var(White);
+  background-color: var(--White); 
   font-family: 'Poppins', sans-serif;
-
-
- 
 }
+
 
 body::-webkit-scrollbar {
   display: none;
