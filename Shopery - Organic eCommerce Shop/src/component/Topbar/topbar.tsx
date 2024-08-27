@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes/routes";
 import ListIcon from "../icons/list/listIcon";
 
+
 const TopBar = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-between h-[42px] text-BodyTiny font-regular text-gray-600">
       <div className="flex h-full w-full items-center">
@@ -15,7 +19,7 @@ const TopBar = () => {
         <p className="flex items-center">USD <ListIcon /></p>
         <div className="h-4 border-l border-gray-300 mx-4"></div>
         <div className="flex space-x-4">
-          <button className="hover:underline">Sign In</button>
+          <button onClick={()=>navigate(ROUTES.login)} className="hover:underline">Sign In</button>
           <button className="hover:underline">Sign Up</button>
         </div>
       </div>

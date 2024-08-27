@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <div style={{ width: "1920px" }} className="-ml-[300px] bg-gray-900">
-      <div className="mx-auto flex w-[1320px] justify-between mt-[62px]  py-8">
+      <div className="mx-auto flex w-[1320px] justify-between mt-[42px]  py-8">
         <div className="w-[30%] mt-8">
           <WhiteLogo className="mb-4 " />
           <p className="mb-5 text-BodySmall text-gray-500">

@@ -9,6 +9,7 @@ interface InputFieldProps {
   validationMessage?: string;
   validationState?: 'success' | 'warning' | 'error';
   className?: string;
+  name?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -19,7 +20,8 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder = '',
   validationMessage,
   validationState,
-  className = '',  
+  className = '',
+  name,
 }) => {
   const getValidationClasses = () => {
     switch (validationState) {
@@ -56,7 +58,8 @@ const InputField: React.FC<InputFieldProps> = ({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className={`${className} ${getValidationClasses()} border-[1px]`}
+          name={name}
+          className={`${className} ${getValidationClasses()} border-[1px] pl-3`}
         />
         {validationState && (
           <img
@@ -67,12 +70,15 @@ const InputField: React.FC<InputFieldProps> = ({
         )}
       </div>
       {validationMessage && (
-        <p className={`mt-1 text-sm ${getValidationClasses()}`}>
-          {validationMessage}
-        </p>
+        <div className="relative flex items-center mt-1">
+          <p className={`text-sm ${getValidationClasses()} flex-grow`}>
+            {validationMessage}
+          </p>
+        </div>
       )}
     </div>
   );
 };
 
 export default InputField;
+

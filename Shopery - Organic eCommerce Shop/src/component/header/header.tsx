@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Logo from "../icons/Logo/logo";
 import HeartIcon from "../icons/HeartIcon/heartIcon";
 import BasketIcon from "../icons/BasketIcon/basketIcon";
 import InputField from "../Reusable component/input";
+import Shoppingcard from "../product_cart/shoppingcard";
 
-interface HeaderProps {
-  cartTotal: number;
-  cartCount: number;
-}
 
-const Header: React.FC<HeaderProps> = ({ cartTotal, cartCount }) => {
+
+const Header = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const cartTotalCost = parseFloat(localStorage.getItem('cartTotal') || '0')
+  const counter = parseInt(localStorage.getItem('cartCount')|| "0")
 
   return (
     <div className="flex h-[93px] items-center justify-between">
@@ -32,10 +33,10 @@ const Header: React.FC<HeaderProps> = ({ cartTotal, cartCount }) => {
         <HeartIcon />
         <div className="mx-4 h-7 border-l border-gray-300"></div>
         <div className="relative">
-          <BasketIcon />
-          {cartCount > 0 && (
+          <BasketIcon  onClick={()=> setIsCartOpen(!isCartOpen)} />
+          {counter > 0 && (
             <span className="absolute -right-1 -top-1 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-HardPrimary text-[10px] text-white">
-              {cartCount}
+              {counter}
             </span>
           )}
         </div>
@@ -44,10 +45,11 @@ const Header: React.FC<HeaderProps> = ({ cartTotal, cartCount }) => {
             Shopping cart:
           </span>
           <span className="text-BodySmall font-medium text-gray-900">
-            ${cartTotal.toFixed(2)}
+            ${cartTotalCost.toFixed(2)}
           </span>
         </span>
       </div>
+      {isCartOpen && <Shoppingcard onClose={()=>setIsCartOpen(false)}/>}
     </div>
   );
 };

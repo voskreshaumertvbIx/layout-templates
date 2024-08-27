@@ -24,7 +24,7 @@ const HotDeals: React.FC<HotDealsProps> = ({ products, onAddToCart }) => {
   return (
   <div>
    <SectionHeader linkText="View All" title="Hot Deals" linkUrl=""/>
-    <div className="grid grid-cols-5 grid-rows-[repeat(3,_minmax(0,_1fr))]">
+    <div className="grid grid-cols-5 grid-rows-[repeat(3,_minmax(0,_1fr))] border ">
     {products.map((product, index) => (
       <div
         key={product.id}

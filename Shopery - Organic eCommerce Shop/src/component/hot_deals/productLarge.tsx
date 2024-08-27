@@ -23,7 +23,7 @@ const ProductCardLarge: React.FC<ProductCardLargeProps> = ({
   onAddToCart,
 }) => {
   return (
-    <div className="border-grey-400 relative flex h-full w-full flex-col border-[1px]">
+    <div className=" relative flex h-full w-full flex-col   border border-gray-100 hover:border-[2px] hover:border-Primary hover:shadow-lg z-10">
       <div className="absolute left-4 top-4 flex space-x-2">
         {product.sale && <Badge variant="sale">Sale {product.sale}%</Badge>}
         <Badge variant="bestSale">Best Sale</Badge>

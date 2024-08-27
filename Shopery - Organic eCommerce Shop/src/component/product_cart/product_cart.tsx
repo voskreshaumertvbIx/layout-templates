@@ -17,7 +17,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
     <div
-      className="relative box-border border border-gray-100"
+      className="relative border border-gray-100 hover:border-[2px] hover:border-Primary hover:shadow-lg z-10"
       key={product.id}
     >
       {product.sale && (
