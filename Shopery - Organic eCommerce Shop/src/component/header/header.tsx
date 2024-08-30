@@ -5,9 +5,12 @@ import BasketIcon from "../icons/BasketIcon/basketIcon";
 import InputField from "../Reusable component/input";
 import Shoppingcard from "../product_cart/shoppingcard";
 
+interface HeaderProps  {
+  cartCount:number,
+  cartTotal:number
+}
 
-
-const Header = () => {
+const Header: React.FC<HeaderProps> = () => {
   const [searchValue, setSearchValue] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false)
   const cartTotalCost = parseFloat(localStorage.getItem('cartTotal') || '0')

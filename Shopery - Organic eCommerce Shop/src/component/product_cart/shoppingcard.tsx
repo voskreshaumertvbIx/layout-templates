@@ -9,9 +9,14 @@ interface CartItem {
 
 interface ShoppingcardProps {
   onClose: () => void;
+
 }
 
-const Shoppingcard: React.FC<ShoppingcardProps> = ({ onClose }) => {
+
+const Shoppingcard: React.FC<ShoppingcardProps> = ({
+  onClose,
+ 
+}) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartTotal, setCartTotal] = useState<number>(0);
   const [cartCount, setCartCount] = useState<number>(0);
@@ -28,15 +33,14 @@ const Shoppingcard: React.FC<ShoppingcardProps> = ({ onClose }) => {
 
   const handleDeleteProduct = (indexDelete: number) => {
     const updatedCart = cart.filter((_, index) => index !== indexDelete);
-    
-    
     const updatedCartTotal = updatedCart.reduce((total, item) => total + item.price, 0);
     const updatedCartCount = updatedCart.length;
 
-    
     setCart(updatedCart);
     setCartTotal(updatedCartTotal);
     setCartCount(updatedCartCount);
+
+   
 
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     localStorage.setItem('cartTotal', updatedCartTotal.toFixed(2));
@@ -77,5 +81,4 @@ const Shoppingcard: React.FC<ShoppingcardProps> = ({ onClose }) => {
     </div>
   );
 };
-
-export default Shoppingcard;
+export default Shoppingcard

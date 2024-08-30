@@ -1,14 +1,16 @@
 import React from "react";
 import ListIcon from "../icons/list/listIcon";
+import { ROUTES } from "../../routes/routes";
 
 const nav_links = [
   { name: "Home", route: "/" },
   { name: "About", route: "/about" },
-  { name: "Services", route: "/services" },
+  { name: "Shop", route: ROUTES.categories }, 
   { name: "Contact", route: "/contact" },
   { name: "About us", route: "/aboutus" },
   { name: "Contact us", route: "/routeus" },
 ];
+
 
 const Navbar: React.FC = () => {
   return (

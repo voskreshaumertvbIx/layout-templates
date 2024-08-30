@@ -27,11 +27,12 @@ const MainPage = () => {
   return (
     <>
       <TopBar />
-      <Header />
-      <Navbar />
+
       <CartManager>
-        {({ handleAddToCart }) => (
+        {({ handleAddToCart, cartCount, cartTotal }) => (
           <>
+            <Header cartCount={cartCount} cartTotal={cartTotal} />
+            <Navbar />
             <Promocards />
             <Support />
             <PopularCategories />

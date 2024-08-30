@@ -10,9 +10,9 @@ interface Product {
   sale?: number;
 }
 
-interface CartManagerProps {
+export interface CartManagerProps {
   children: (props: {
-    cart: Product[];
+    cart?: Product[];
     cartTotal: number;
     cartCount: number;
     handleAddToCart: (productId: number) => void;
@@ -25,9 +25,7 @@ const CartManager: React.FC<CartManagerProps> = ({ children }) => {
   const [cartCount, setCartCount] = useState<number>(0);
 
   useEffect(() => {
-    const storedCart: Product[] = JSON.parse(
-      localStorage.getItem("cart") || "[]",
-    );
+    const storedCart: Product[] = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(storedCart);
 
     const total = calculateTotal(storedCart);
@@ -52,13 +50,14 @@ const CartManager: React.FC<CartManagerProps> = ({ children }) => {
   };
 
   const calculateTotal = (cart: Product[]): number => {
-    return cart.reduce(
-      (acc, item) => acc + (item.discountPrice || item.price),
-      0,
-    );
+    return cart.reduce((acc, item) => acc + (item.discountPrice || item.price), 0);
   };
 
-  return children({ cart, cartTotal, cartCount, handleAddToCart });
+  return children({
+    cart,
+    cartTotal: cartTotal ?? 0, 
+    cartCount: cartCount ?? 0,  
+    handleAddToCart,
+  });
 };
-
-export default CartManager;
+export default CartManager
