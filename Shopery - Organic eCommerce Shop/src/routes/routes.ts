@@ -4,5 +4,6 @@ export const ROUTES ={
   mainPage: '/',
   login: '/login',
   register: '/register',
-  categories: '/categories'
+  categories: '/categories',
+  blog:'/blog'
 }

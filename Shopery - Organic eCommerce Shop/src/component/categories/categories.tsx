@@ -4,6 +4,9 @@ import { products } from "../product_cart/product";
 import ProductCard from "../product_cart/product_cart";
 import { rating } from "./raiting";
 import { tags } from "./tags";
+import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import Button from "../Reusable component/buttons";
+
 
 const min = 0;
 const max = 1000;
@@ -12,17 +15,67 @@ interface ProductFilterProps {
   handleAddToCart: (productId: number) => void;
 }
 
+interface CategoryButtonProps {
+  label: string;
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  count: number;
+}
+
+export const CategoryButton: React.FC<CategoryButtonProps> = ({
+  label,
+  selectedCategory,
+  setSelectedCategory,
+  count,
+}) => {
+  return (
+    <div className="mt-2 flex items-center">
+      <button
+        className={`h-4 w-4 rounded-full border-[1px] ${
+          selectedCategory === label
+            ? "border-Primary bg-Primary"
+            : "border-gray-100 bg-white"
+        }`}
+        onClick={() => setSelectedCategory(label)}
+      ></button>
+      <label className="ml-2 text-BodySmall font-regular">
+        {label} ({count})
+      </label>
+    </div>
+  );
+};
+
 const ProductFilter: React.FC<ProductFilterProps> = ({ handleAddToCart }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [value, setValue] = useState<number[]>([min, max]);
   const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
+  const [isExpanded, setIsExpanded] = useState({
+    categories: true,
+    price: true,
+    rating: true,
+    tags: true,
+  });
+
+  const toggleSection = (section: keyof typeof isExpanded) => {
+    setIsExpanded((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  const countProductsByCategory = (category: string) => {
+    return products.filter(
+      (product) => category === "All" || product.type === category,
+    ).length;
+  };
+
   const toggleRating = (ratingValue: string) => {
     setSelectedRatings((prevRatings) =>
       prevRatings.includes(ratingValue)
         ? prevRatings.filter((rating) => rating !== ratingValue)
-        : [...prevRatings, ratingValue]
+        : [...prevRatings, ratingValue],
     );
   };
 
@@ -30,7 +83,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ handleAddToCart }) => {
     setSelectedTags((prevTagsValue) =>
       prevTagsValue.includes(tagValue)
         ? prevTagsValue.filter((tag) => tag !== tagValue)
-        : [...prevTagsValue, tagValue]
+        : [...prevTagsValue, tagValue],
     );
   };
 
@@ -47,65 +100,182 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ handleAddToCart }) => {
   });
 
   return (
-    <section className="grid grid-cols-4 gap-4 p-4">
-      <section className="col-span-1 p-4 border rounded-lg">
-        <div className="mb-6 flex justify-center space-x-4">
-          <button onClick={() => setSelectedCategory("All")}>All</button>
-          <button onClick={() => setSelectedCategory("Fresh Fruit")}>
-            Fresh Fruit
-          </button>
-          <button onClick={() => setSelectedCategory("Vegetable")}>
-            Vegetables
-          </button>
-        </div>
-
-        <h2>Price</h2>
-        <Slider
-          value={value}
-          onChange={setValue}
-          min={min}
-          max={max}
-          className="my-4 h-1.5 w-full rounded"
-          thumbClassName="h-3 w-3 bg-White border-[1.5px] border-Primary rounded-full cursor-pointer transform -translate-y-1/3"
-          pearling
-          withTracks
-          renderTrack={(props, state) => (
-            <div
-              {...props}
-              className={`${
-                state.index === 1 ? "bg-Primary" : "bg-gray-100"
-              } h-1 rounded`}
-            />
-          )}
-        />
-        <p>
-          Price: {value[0]} - {value[1]}
-        </p>
-
-        <h2>Rating</h2>
-        {rating.map(({ value, img }) => (
-          <div key={value} className="flex items-center">
-            <input
-              type="checkbox"
-              checked={selectedRatings.includes(value)}
-              onChange={() => toggleRating(value)}
-            />
-            <img src={img} alt={`Rating ${value}`} />
+    <>
+    <div className="mt-5 flex items-center justify-between">
+      <button className="bg-Primary text-White text-BodySmall w-[101px] h-[35px] rounded-full">Filter</button>
+      <p className="text-BodyMedium font-medium text-gray-600"><span className="text-BodyMedium text-gray-900">{filteredProducts.length}</span> Results Found</p>
+    </div>
+    <section className="mt-12 grid grid-cols-4 gap-4">
+      <section className="col-span-1 rounded-lg">
+        <section className="mb-4 flex flex-col items-start space-x-4 border-b border-gray-100">
+          <div className="flex w-full items-center justify-between">
+            <h2 className="text-BodyXL font-medium text-gray-900">
+              All Categories
+            </h2>
+            <button onClick={() => toggleSection("categories")} className="">
+              {isExpanded.categories ? <BsChevronUp /> : <BsChevronDown />}
+            </button>
           </div>
-        ))}
 
-        <h2>Popular tag</h2>
-        {tags.map(({ tag, id }) => (
-          <button
-            key={id}
-            onClick={() => toggleTag(tag)}
-            className={`rounded-lg px-3 py-1 text-BodySmall ${
-              selectedTags.includes(tag) ? "bg-Primary" : "bg-gray-300"
-            }`}
+          {isExpanded.categories && (
+            <div className="mb-5">
+              <CategoryButton
+                label="All"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                count={countProductsByCategory("All")}
+              />
+              <CategoryButton
+                label="Fresh Fruit"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                count={countProductsByCategory("Fresh Fruit")}
+              />
+              <CategoryButton
+                label="Vegetable"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                count={countProductsByCategory("Vegetable")}
+              />
+              <CategoryButton
+                label="Cooking"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                count={countProductsByCategory("Cooking")}
+              />
+              <CategoryButton
+                label="Snacks"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                count={countProductsByCategory("Snacks")}
+              />
+              <CategoryButton
+                label="Beverages"
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                count={countProductsByCategory("Beverages")}
+              />
+            </div>
+          )}
+        </section>
+
+        <section className="mb-5 border-b border-gray-100">
+          <div className="flex w-full items-center justify-between">
+            <h2 className="text-BodyXL font-medium text-gray-900">Price</h2>
+            <button onClick={() => toggleSection("price")} className="">
+              {isExpanded.price ? <BsChevronUp /> : <BsChevronDown />}
+            </button>
+          </div>
+
+          {isExpanded.price && (
+            <>
+              <Slider
+                value={value}
+                onChange={setValue}
+                min={min}
+                max={max}
+                className="my-4 h-1.5 w-full rounded"
+                thumbClassName="h-3 w-3 bg-White border-[1.5px] border-Primary rounded-full cursor-pointer transform -translate-y-1/3"
+                pearling
+                withTracks
+                renderTrack={(props, state) => (
+                  <div
+                    {...props}
+                    className={`${
+                      state.index === 1 ? "bg-Primary" : "bg-gray-100"
+                    } h-1 rounded`}
+                  />
+                )}
+              />
+              <p className="mb-6 text-BodySmall font-regular">
+                Price:{" "}
+                <span className="text-BodySmall font-medium">
+                  {value[0]} - {value[1]}
+                </span>
+              </p>
+            </>
+          )}
+        </section>
+
+        <section className="mb-5 border-b border-gray-100">
+          <div className="mb-4 flex w-full items-center justify-between">
+            <h2 className="text-BodyXL font-medium text-gray-900">Rating</h2>
+            <button onClick={() => toggleSection("rating")} className="">
+              {isExpanded.rating ? <BsChevronUp /> : <BsChevronDown />}
+            </button>
+          </div>
+
+          {isExpanded.rating && (
+            <>
+              {rating.map(({ value, img }) => (
+                <div
+                  key={value}
+                  className="mb-2 flex items-center last-of-type:mb-5"
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedRatings.includes(value)}
+                    onChange={() => toggleRating(value)}
+                  />
+                  <img src={img} alt={`Rating ${value}`} />
+                </div>
+              ))}
+            </>
+          )}
+        </section>
+
+        <section className="mb-5">
+          <div className="mb-4 flex w-full items-center justify-between">
+            <h2 className="text-BodyXL font-medium text-gray-900">
+              Popular Tags
+            </h2>
+            <button onClick={() => toggleSection("tags")} className="">
+              {isExpanded.tags ? <BsChevronUp /> : <BsChevronDown />}
+            </button>
+          </div>
+
+          {isExpanded.tags && (
+            <>
+              {tags.map(({ tag, id }) => (
+                <button
+                  key={id}
+                  onClick={() => toggleTag(tag)}
+                  className={`my-1 mr-1 rounded-full px-3 py-1 text-BodySmall ${
+                    selectedTags.includes(tag)
+                      ? "bg-Primary text-White"
+                      : "bg-gray-100"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </>
+          )}
+        </section>
+        <section className="relative">
+          <img
+            className="h-[295px] w-full"
+            src="img/categorybanner.png"
+            alt=""
+          />
+          <div className="absolute left-[25%] top-2 flex items-baseline">
+            <span className="text-Heading05 font-semibold text-Warning">
+              79%
+            </span>
+            <p className="text-BodyXXL font-regular">Discount </p>
+          </div>
+          <p className="absolute left-[30%] top-[20%] text-BodyMedium font-medium text-gray-700">
+            on your first order{" "}
+          </p>
+          <Button
+            icon={true}
+            variant="ghost"
+            className="absolute left-[27%] top-[30%]"
           >
-            {tag}
-          </button>
-        ))}
+            Shop now
+          </Button>
+        </section>
+       
       </section>
 
       <section className="col-span-3">
@@ -115,12 +285,15 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ handleAddToCart }) => {
               key={product.id}
               product={product}
               onAddToCart={() => handleAddToCart(product.id)}
+              className={`rounded-lg p-2`}
             />
           ))}
         </div>
       </section>
     </section>
+    </>
   );
-};
+  
+  };
 
 export default ProductFilter;

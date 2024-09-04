@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -11,6 +12,8 @@ type ButtonProps = {
   fillIcon?: string;
   onClick?: () => void;
   className?: string;
+  navigateTo?: string;
+  
 };
 
 const Button: FC<ButtonProps> = ({
@@ -19,10 +22,11 @@ const Button: FC<ButtonProps> = ({
   variant = "fill",
   hoverEffect = true,
   icon = false,
-  defaultIcon = "./img/icon/Group.svg",
-  fillIcon = './img/whiteArrow.png',
+  defaultIcon = "/img/icon/Group.svg",
+  fillIcon = '/img/whiteArrow.png',
   onClick,
   className,
+  navigateTo
 }) => {
   const baseClasses =
     "rounded-full font-bold focus:outline-none transition-colors inline-flex items-center justify-center";
@@ -52,10 +56,21 @@ const Button: FC<ButtonProps> = ({
     { [hoverClasses[variant]]: hoverEffect },
     className,
   );
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (navigateTo) {
+      navigate(navigateTo);
+    }
+    if (onClick) {
+      onClick();
+    }
+  };
+
+
 
   return (
     <div className="flex items-center">
-      <button className={buttonClasses} onClick={onClick}>
+      <button className={buttonClasses} onClick={handleClick}>
         <div className="flex items-center justify-center">
           <span>{children}</span>
           {icon && (

@@ -47,7 +47,7 @@ const Timer: React.FC<TimerProps> = ({ initialTime , className}) => {
   const formattedTime = formatTime(time);
 
   return (
-<div className={`flex items-center text-BodyXXL font-regular text-white ${className}`}>
+<div className={`flex items-center text-BodyXXL font-regular  ${className}`}>
   <div className="relative flex flex-col items-center">
     <div>{formattedTime.days}</div>
     <div className="text-BodyTiny ">DAYS</div>

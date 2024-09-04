@@ -57,7 +57,7 @@ const ProductCardLarge: React.FC<ProductCardLargeProps> = ({
         <p className="text-BodySmall font-regular text-gray-400">
           Hurry up! Offer ends In:
         </p>
-        <Timer className={`text-black`} initialTime={10000} />
+        <Timer className='text-gray-900' initialTime={10000} />
       </div>
     </div>
   );

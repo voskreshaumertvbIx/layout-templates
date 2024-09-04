@@ -10,14 +10,16 @@ interface ProductCardProps {
     price: number;
     discountPrice?: number;
     sale?: number;
+    
   };
   onAddToCart: () => void;
+  className?:string
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart,className }) => {
   return (
     <div
-      className="relative border border-gray-100 hover:border-[2px] hover:border-Primary hover:shadow-lg z-10"
+      className={`relative border border-gray-100 hover:border-[2px] hover:border-Primary hover:shadow-lg z-10 ${className}`}
       key={product.id}
     >
       {product.sale && (
@@ -50,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
               ${product.price.toFixed(2)}
             </span>
           )}
-          <img src="img/Products/Rating.png" className="" alt="rating" />
+          <img src="/img/Products/Rating.png" className="" alt="rating" />
         </div>
         <BasketIcon onClick={onAddToCart} />
       </div>

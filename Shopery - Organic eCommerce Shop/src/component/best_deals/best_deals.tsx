@@ -6,7 +6,7 @@ import Badge from "../Reusable component/badge";
 const BestDeals = () => {
   return (
     <section className="flex gap-[24px] text-White mt-[60px]">
-      <div className="flex h-[536px] w-[424px] flex-col items-center justify-start space-y-4 rounded-lg bg-[url('/img/deals/bestdeals.png')] p-8">
+      <div className="flex h-[536px] w-[424px] flex-col items-center justify-start space-y-4 rounded-lg bg-[url('/img/deals/bestdeals.png')] p-8 ">
         <div className="flex flex-col items-center space-y-2 ">
           <p className="text-BodyMedium font-regular uppercase text-white">
             Best Deals

@@ -5,6 +5,10 @@ import MainPage from "../page/mainPage/mainPage";
 import RegisterPage from "../page/registerPage/registerPage";
 
 import Categories from "../page/categories/categories";
+import BlogPage from "../page/blogPage/blogPage";
+import SingleBlogPage from "../page/singleBlogPage/singleblogpage";
+
+
 
 const AppRoutes = () => {
   return (
@@ -13,6 +17,9 @@ const AppRoutes = () => {
       <Route path={ROUTES.login} element={<LoginPage />} />
       <Route path={ROUTES.register} element={<RegisterPage/>} />
       <Route path={ROUTES.categories} element={<Categories/>}/>
+      <Route path={`${ROUTES.blog}/:id`} element={<SingleBlogPage/>} />
+      <Route path={ROUTES.blog} element={<BlogPage />} />
+    
     </Routes>
   );
 };

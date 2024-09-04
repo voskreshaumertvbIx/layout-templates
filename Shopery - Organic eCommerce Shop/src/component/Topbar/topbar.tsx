@@ -8,7 +8,7 @@ const TopBar = () => {
   return (
     <div className="flex justify-between h-[42px] text-BodyTiny font-regular text-gray-600">
       <div className="flex h-full w-full items-center">
-        <img className="mr-2" src="./img/icon/mappin.png" alt="map pin" />
+        <img className="mr-2" src="/img/icon/mappin.png" alt="map pin" />
         <p>
           Store Location: Lincoln- 344, Illinois, Chicago, USA
         </p>
@@ -20,7 +20,7 @@ const TopBar = () => {
         <div className="h-4 border-l border-gray-300 mx-4"></div>
         <div className="flex space-x-4">
           <button onClick={()=>navigate(ROUTES.login)} className="hover:underline">Sign In</button>
-          <button className="hover:underline">Sign Up</button>
+          <button onClick={()=>navigate(ROUTES.register)} className="hover:underline">Sign Up</button>
         </div>
       </div>
     </div>
