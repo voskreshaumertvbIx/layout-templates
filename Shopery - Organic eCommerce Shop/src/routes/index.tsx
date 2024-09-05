@@ -7,6 +7,7 @@ import RegisterPage from "../page/registerPage/registerPage";
 import Categories from "../page/categories/categories";
 import BlogPage from "../page/blogPage/blogPage";
 import SingleBlogPage from "../page/singleBlogPage/singleblogpage";
+import Aboutus from "../page/aboutuaPage/aboutus";
 
 
 
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path={ROUTES.categories} element={<Categories/>}/>
       <Route path={`${ROUTES.blog}/:id`} element={<SingleBlogPage/>} />
       <Route path={ROUTES.blog} element={<BlogPage />} />
+      <Route path={ROUTES.aboutus} element={<Aboutus/>} />
     
     </Routes>
   );

@@ -4,9 +4,10 @@ import classNames from "classnames";
 type CheckboxResProps = {
   className?: string;
   onChange?: (isChecked: boolean) => void;
+  label: string;
 };
 
-const CheckboxRes: React.FC<CheckboxResProps> = ({ className }) => {
+const CheckboxRes: React.FC<CheckboxResProps> = ({ className, label }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -32,18 +33,21 @@ const CheckboxRes: React.FC<CheckboxResProps> = ({ className }) => {
       "bg-white border-[1px] border-Primary shadow-lg": isHovered && !isChecked,
       "bg-white border-[1px] border-gray-600": !isHovered && !isChecked,
     },
-    className,
+    className
   );
 
   return (
-    <div
-      className={checkboxClasses}
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {isChecked && <span>✔</span>}
-    </div>
+    <label className="flex space-x-2 cursor-pointer ">
+      <div
+        className={checkboxClasses}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {isChecked && <span>✔</span>}
+      </div>
+      <span className="text-BodySmall text-gray-600 font-regular">{label}</span>
+    </label>
   );
 };
 

@@ -7,7 +7,7 @@ const nav_links = [
   { name: "About", route: "/about" },
   { name: "Shop", route: ROUTES.categories }, 
   { name: "Blog", route: ROUTES.blog},
-  { name: "About us", route: "/aboutus" },
+  { name: "About us", route: ROUTES.aboutus },
   { name: "Contact us", route: "/routeus" },
 ];
 
