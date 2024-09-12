@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface InputFieldProps {
   label?: string;
@@ -7,51 +7,55 @@ interface InputFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   validationMessage?: string;
-  validationState?: 'success' | 'warning' | 'error';
+  validationState?: "success" | "warning" | "error";
   className?: string;
   name?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
   label,
-  type = 'text',
+  type = "text",
   value,
   onChange,
-  placeholder = '',
+  placeholder = "",
   validationMessage,
   validationState,
-  className = '',
+  className = "",
   name,
 }) => {
   const getValidationClasses = () => {
     switch (validationState) {
-      case 'success':
-        return 'border-green-500 text-green-500';
-      case 'warning':
-        return 'border-yellow-500 text-yellow-500';
-      case 'error':
-        return 'border-red-500 text-red-500';
+      case "success":
+        return "border-green-500 text-green-500";
+      case "warning":
+        return "border-yellow-500 text-yellow-500";
+      case "error":
+        return "border-red-500 text-red-500";
       default:
-        return '';
+        return "";
     }
   };
 
   const getValidationIcon = () => {
     switch (validationState) {
-      case 'success':
-        return '/img/icon/success.png';
-      case 'warning':
-        return '/img/icon/warning.png';
-      case 'error':
-        return '/img/icon/error.png';
+      case "success":
+        return "/img/icon/success.png";
+      case "warning":
+        return "/img/icon/warning.png";
+      case "error":
+        return "/img/icon/error.png";
       default:
-        return '';
+        return "";
     }
   };
 
   return (
     <div className="relative">
-      {label && <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>}
+      {label && (
+        <label className="mb-1 block text-sm font-medium text-gray-700">
+          {label}
+        </label>
+      )}
       <div className="relative">
         <input
           type={type}
@@ -65,12 +69,12 @@ const InputField: React.FC<InputFieldProps> = ({
           <img
             src={getValidationIcon()}
             alt={validationState}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
+            className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 transform"
           />
         )}
       </div>
       {validationMessage && (
-        <div className="relative flex items-center mt-1">
+        <div className="relative mt-1 flex items-center">
           <p className={`text-sm ${getValidationClasses()} flex-grow`}>
             {validationMessage}
           </p>
@@ -81,4 +85,3 @@ const InputField: React.FC<InputFieldProps> = ({
 };
 
 export default InputField;
-

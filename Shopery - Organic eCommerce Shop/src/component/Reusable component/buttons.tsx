@@ -13,7 +13,6 @@ type ButtonProps = {
   onClick?: () => void;
   className?: string;
   navigateTo?: string;
-  
 };
 
 const Button: FC<ButtonProps> = ({
@@ -23,10 +22,10 @@ const Button: FC<ButtonProps> = ({
   hoverEffect = true,
   icon = false,
   defaultIcon = "/img/icon/Group.svg",
-  fillIcon = '/img/whiteArrow.png',
+  fillIcon = "/img/whiteArrow.png",
   onClick,
   className,
-  navigateTo
+  navigateTo,
 }) => {
   const baseClasses =
     "rounded-full font-bold focus:outline-none transition-colors inline-flex items-center justify-center";
@@ -66,8 +65,6 @@ const Button: FC<ButtonProps> = ({
     }
   };
 
-
-
   return (
     <div className="flex items-center">
       <button className={buttonClasses} onClick={handleClick}>
@@ -76,7 +73,7 @@ const Button: FC<ButtonProps> = ({
           {icon && (
             <div className="ml-2">
               <img
-                src={variant === 'border' ? defaultIcon : fillIcon }
+                src={variant === "border" ? defaultIcon : fillIcon}
                 alt="icon"
                 className="h-full w-full object-contain"
               />

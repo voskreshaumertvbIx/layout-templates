@@ -27,12 +27,11 @@ const PopupModal = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative flex w-1/2 rounded-lg bg-white p-6 shadow-lg">
             <img src="/img/BG.png" alt="" />
-            <div className="flex flex-col items-center justify-center w-full">
-              
+            <div className="flex w-full flex-col items-center justify-center">
               <img
                 src="img/Close.png"
                 alt="Close"
-                className="absolute top-4 right-4 cursor-pointer"
+                className="absolute right-4 top-4 cursor-pointer"
                 onClick={handleClose}
               />
               <h2 className="mb-4 text-center text-Heading03 font-bold">

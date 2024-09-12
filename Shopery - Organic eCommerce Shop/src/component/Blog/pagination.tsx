@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface PaginationProps {
   blogPerPage: number;
@@ -7,7 +7,12 @@ interface PaginationProps {
   currentPage: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ blogPerPage, totalBlog, paginate, currentPage }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  blogPerPage,
+  totalBlog,
+  paginate,
+  currentPage,
+}) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalBlog / blogPerPage); i++) {
@@ -15,14 +20,16 @@ const Pagination: React.FC<PaginationProps> = ({ blogPerPage, totalBlog, paginat
   }
 
   return (
-    <div className="flex items-center justify-center mt-4">
-      <ul className="flex list-none p-0 m-0">
+    <div className="mt-4 flex items-center justify-center">
+      <ul className="m-0 flex list-none p-0">
         <li>
           <button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
-            className={`px-3 py-2 rounded-full ${
-              currentPage === 1 ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700'
+            className={`rounded-full px-3 py-2 ${
+              currentPage === 1
+                ? "bg-gray-200 text-gray-400"
+                : "bg-white text-gray-700"
             }`}
           >
             &lt;
@@ -32,8 +39,10 @@ const Pagination: React.FC<PaginationProps> = ({ blogPerPage, totalBlog, paginat
           <li key={number} className="mx-1">
             <button
               onClick={() => paginate(number)}
-              className={`px-4 py-2 rounded-full ${
-                currentPage === number ? 'bg-Primary text-white' : 'bg-white text-gray-700'
+              className={`rounded-full px-4 py-2 ${
+                currentPage === number
+                  ? "bg-Primary text-white"
+                  : "bg-white text-gray-700"
               }`}
             >
               {number}
@@ -44,8 +53,10 @@ const Pagination: React.FC<PaginationProps> = ({ blogPerPage, totalBlog, paginat
           <button
             onClick={() => paginate(currentPage + 1)}
             disabled={currentPage === pageNumbers.length}
-            className={`px-3 py-2 rounded-full ${
-              currentPage === pageNumbers.length ? 'bg-gray-200 text-gray-400' : 'bg-white text-gray-700'
+            className={`rounded-full px-3 py-2 ${
+              currentPage === pageNumbers.length
+                ? "bg-gray-200 text-gray-400"
+                : "bg-white text-gray-700"
             }`}
           >
             &gt;

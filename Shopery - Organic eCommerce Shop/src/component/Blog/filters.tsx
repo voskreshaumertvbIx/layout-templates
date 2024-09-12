@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { CategoryButton } from "../categories/categories";
-import { BlogData, blogData, Gallery, resentlyAdded, tagsBlog } from "./blogData";
+import {
+  BlogData,
+  blogData,
+  Gallery,
+  resentlyAdded,
+  tagsBlog,
+} from "./blogData";
 
 //ADD USEDEBAUNCE
 
@@ -15,7 +21,6 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
 
   console.log("Rendering Singlepage component");
 
- 
   const countProductsByCategory = (category: string) => {
     return blogData.filter(
       (blog) => category === "All" || blog.category === category,
@@ -114,7 +119,11 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
               />
               <div className="flex flex-col justify-between">
                 <p className="text-BodyMedium">{blog.title}</p>
-                <img className="h-5 w-[100px] object-cover" src="/img/Date.png" alt="" />
+                <img
+                  className="h-5 w-[100px] object-cover"
+                  src="/img/Date.png"
+                  alt=""
+                />
               </div>
             </section>
           ))}

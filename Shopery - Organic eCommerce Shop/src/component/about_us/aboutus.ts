@@ -33,23 +33,23 @@ export const trusted = [
 
 export const team = [
   {
-    image:'/img/aboutus/team1.png',
-    name:'Jenny Wilson',
-    role:'Ceo & Founder'
+    image: "/img/aboutus/team1.png",
+    name: "Jenny Wilson",
+    role: "Ceo & Founder",
   },
   {
-    image:'/img/aboutus/team2.png',
-    name:'Jane Cooper',
-    role:'Worker'
+    image: "/img/aboutus/team2.png",
+    name: "Jane Cooper",
+    role: "Worker",
   },
   {
-    image:'/img/aboutus/team3.png',
-    name:'Cody Fisher',
-    role:'Security Guard'
+    image: "/img/aboutus/team3.png",
+    name: "Cody Fisher",
+    role: "Security Guard",
   },
   {
-    image:'/img/aboutus/team4.png',
-    name:'Robert Fox',
-    role:'Senior Farmer Manager'
-  }
-]
+    image: "/img/aboutus/team4.png",
+    name: "Robert Fox",
+    role: "Senior Farmer Manager",
+  },
+];

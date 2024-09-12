@@ -33,11 +33,11 @@ const CheckboxRes: React.FC<CheckboxResProps> = ({ className, label }) => {
       "bg-white border-[1px] border-Primary shadow-lg": isHovered && !isChecked,
       "bg-white border-[1px] border-gray-600": !isHovered && !isChecked,
     },
-    className
+    className,
   );
 
   return (
-    <label className="flex space-x-2 cursor-pointer ">
+    <label className="flex cursor-pointer space-x-2">
       <div
         className={checkboxClasses}
         onClick={handleClick}
@@ -46,7 +46,7 @@ const CheckboxRes: React.FC<CheckboxResProps> = ({ className, label }) => {
       >
         {isChecked && <span>✔</span>}
       </div>
-      <span className="text-BodySmall text-gray-600 font-regular">{label}</span>
+      <span className="text-BodySmall font-regular text-gray-600">{label}</span>
     </label>
   );
 };

@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import Slider from "react-slider";
-import { products } from "../product_cart/product";
-import ProductCard from "../product_cart/product_cart";
+
 import { rating } from "./raiting";
 import { tags } from "./tags";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import Button from "../Reusable component/buttons";
-
+import { useProductContext } from "../../hooks/useProductContext";
+import ProductCard from "../product_cart/productcard";
 
 const min = 0;
 const max = 1000;
-
-interface ProductFilterProps {
-  handleAddToCart: (productId: number) => void;
-}
 
 interface CategoryButtonProps {
   label: string;
@@ -45,11 +41,13 @@ export const CategoryButton: React.FC<CategoryButtonProps> = ({
   );
 };
 
-const ProductFilter: React.FC<ProductFilterProps> = ({ handleAddToCart }) => {
+const ProductFilter: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [value, setValue] = useState<number[]>([min, max]);
   const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const { products, onAdd } = useProductContext();
 
   const [isExpanded, setIsExpanded] = useState({
     categories: true,
@@ -101,199 +99,204 @@ const ProductFilter: React.FC<ProductFilterProps> = ({ handleAddToCart }) => {
 
   return (
     <>
-    <div className="mt-5 flex items-center justify-between">
-      <button className="bg-Primary text-White text-BodySmall w-[101px] h-[35px] rounded-full">Filter</button>
-      <p className="text-BodyMedium font-medium text-gray-600"><span className="text-BodyMedium text-gray-900">{filteredProducts.length}</span> Results Found</p>
-    </div>
-    <section className="mt-12 grid grid-cols-4 gap-4">
-      <section className="col-span-1 rounded-lg">
-        <section className="mb-4 flex flex-col items-start space-x-4 border-b border-gray-100">
-          <div className="flex w-full items-center justify-between">
-            <h2 className="text-BodyXL font-medium text-gray-900">
-              All Categories
-            </h2>
-            <button onClick={() => toggleSection("categories")} className="">
-              {isExpanded.categories ? <BsChevronUp /> : <BsChevronDown />}
-            </button>
-          </div>
-
-          {isExpanded.categories && (
-            <div className="mb-5">
-              <CategoryButton
-                label="All"
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                count={countProductsByCategory("All")}
-              />
-              <CategoryButton
-                label="Fresh Fruit"
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                count={countProductsByCategory("Fresh Fruit")}
-              />
-              <CategoryButton
-                label="Vegetable"
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                count={countProductsByCategory("Vegetable")}
-              />
-              <CategoryButton
-                label="Cooking"
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                count={countProductsByCategory("Cooking")}
-              />
-              <CategoryButton
-                label="Snacks"
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                count={countProductsByCategory("Snacks")}
-              />
-              <CategoryButton
-                label="Beverages"
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                count={countProductsByCategory("Beverages")}
-              />
+      <div className="mt-5 flex items-center justify-between">
+        <button className="h-[35px] w-[101px] rounded-full bg-Primary text-BodySmall text-White">
+          Filter
+        </button>
+        <p className="text-BodyMedium font-medium text-gray-600">
+          <span className="text-BodyMedium text-gray-900">
+            {filteredProducts.length}
+          </span>{" "}
+          Results Found
+        </p>
+      </div>
+      <section className="mt-12 grid grid-cols-4 gap-4">
+        <section className="col-span-1 rounded-lg">
+          <section className="mb-4 flex flex-col items-start space-x-4 border-b border-gray-100">
+            <div className="flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">
+                All Categories
+              </h2>
+              <button onClick={() => toggleSection("categories")} className="">
+                {isExpanded.categories ? <BsChevronUp /> : <BsChevronDown />}
+              </button>
             </div>
-          )}
-        </section>
 
-        <section className="mb-5 border-b border-gray-100">
-          <div className="flex w-full items-center justify-between">
-            <h2 className="text-BodyXL font-medium text-gray-900">Price</h2>
-            <button onClick={() => toggleSection("price")} className="">
-              {isExpanded.price ? <BsChevronUp /> : <BsChevronDown />}
-            </button>
-          </div>
+            {isExpanded.categories && (
+              <div className="mb-5">
+                <CategoryButton
+                  label="All"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("All")}
+                />
+                <CategoryButton
+                  label="Fresh Fruit"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Fresh Fruit")}
+                />
+                <CategoryButton
+                  label="Vegetable"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Vegetable")}
+                />
+                <CategoryButton
+                  label="Cooking"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Cooking")}
+                />
+                <CategoryButton
+                  label="Snacks"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Snacks")}
+                />
+                <CategoryButton
+                  label="Beverages"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Beverages")}
+                />
+              </div>
+            )}
+          </section>
 
-          {isExpanded.price && (
-            <>
-              <Slider
-                value={value}
-                onChange={setValue}
-                min={min}
-                max={max}
-                className="my-4 h-1.5 w-full rounded"
-                thumbClassName="h-3 w-3 bg-White border-[1.5px] border-Primary rounded-full cursor-pointer transform -translate-y-1/3"
-                pearling
-                withTracks
-                renderTrack={(props, state) => (
+          <section className="mb-5 border-b border-gray-100">
+            <div className="flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">Price</h2>
+              <button onClick={() => toggleSection("price")} className="">
+                {isExpanded.price ? <BsChevronUp /> : <BsChevronDown />}
+              </button>
+            </div>
+
+            {isExpanded.price && (
+              <>
+                <Slider
+                  value={value}
+                  onChange={setValue}
+                  min={min}
+                  max={max}
+                  className="my-4 h-1.5 w-full rounded"
+                  thumbClassName="h-3 w-3 bg-White border-[1.5px] border-Primary rounded-full cursor-pointer transform -translate-y-1/3"
+                  pearling
+                  withTracks
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${
+                        state.index === 1 ? "bg-Primary" : "bg-gray-100"
+                      } h-1 rounded`}
+                    />
+                  )}
+                />
+                <p className="mb-6 text-BodySmall font-regular">
+                  Price:{" "}
+                  <span className="text-BodySmall font-medium">
+                    {value[0]} - {value[1]}
+                  </span>
+                </p>
+              </>
+            )}
+          </section>
+
+          <section className="mb-5 border-b border-gray-100">
+            <div className="mb-4 flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">Rating</h2>
+              <button onClick={() => toggleSection("rating")} className="">
+                {isExpanded.rating ? <BsChevronUp /> : <BsChevronDown />}
+              </button>
+            </div>
+
+            {isExpanded.rating && (
+              <>
+                {rating.map(({ value, img }) => (
                   <div
-                    {...props}
-                    className={`${
-                      state.index === 1 ? "bg-Primary" : "bg-gray-100"
-                    } h-1 rounded`}
-                  />
-                )}
-              />
-              <p className="mb-6 text-BodySmall font-regular">
-                Price:{" "}
-                <span className="text-BodySmall font-medium">
-                  {value[0]} - {value[1]}
-                </span>
-              </p>
-            </>
-          )}
-        </section>
+                    key={value}
+                    className="mb-2 flex items-center last-of-type:mb-5"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedRatings.includes(value)}
+                      onChange={() => toggleRating(value)}
+                    />
+                    <img src={img} alt={`Rating ${value}`} />
+                  </div>
+                ))}
+              </>
+            )}
+          </section>
 
-        <section className="mb-5 border-b border-gray-100">
-          <div className="mb-4 flex w-full items-center justify-between">
-            <h2 className="text-BodyXL font-medium text-gray-900">Rating</h2>
-            <button onClick={() => toggleSection("rating")} className="">
-              {isExpanded.rating ? <BsChevronUp /> : <BsChevronDown />}
-            </button>
-          </div>
+          <section className="mb-5">
+            <div className="mb-4 flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">
+                Popular Tags
+              </h2>
+              <button onClick={() => toggleSection("tags")} className="">
+                {isExpanded.tags ? <BsChevronUp /> : <BsChevronDown />}
+              </button>
+            </div>
 
-          {isExpanded.rating && (
-            <>
-              {rating.map(({ value, img }) => (
-                <div
-                  key={value}
-                  className="mb-2 flex items-center last-of-type:mb-5"
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedRatings.includes(value)}
-                    onChange={() => toggleRating(value)}
-                  />
-                  <img src={img} alt={`Rating ${value}`} />
-                </div>
-              ))}
-            </>
-          )}
-        </section>
-
-        <section className="mb-5">
-          <div className="mb-4 flex w-full items-center justify-between">
-            <h2 className="text-BodyXL font-medium text-gray-900">
-              Popular Tags
-            </h2>
-            <button onClick={() => toggleSection("tags")} className="">
-              {isExpanded.tags ? <BsChevronUp /> : <BsChevronDown />}
-            </button>
-          </div>
-
-          {isExpanded.tags && (
-            <>
-              {tags.map(({ tag, id }) => (
-                <button
-                  key={id}
-                  onClick={() => toggleTag(tag)}
-                  className={`my-1 mr-1 rounded-full px-3 py-1 text-BodySmall ${
-                    selectedTags.includes(tag)
-                      ? "bg-Primary text-White"
-                      : "bg-gray-100"
-                  }`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </>
-          )}
-        </section>
-        <section className="relative">
-          <img
-            className="h-[295px] w-full"
-            src="img/categorybanner.png"
-            alt=""
-          />
-          <div className="absolute left-[25%] top-2 flex items-baseline">
-            <span className="text-Heading05 font-semibold text-Warning">
-              79%
-            </span>
-            <p className="text-BodyXXL font-regular">Discount </p>
-          </div>
-          <p className="absolute left-[30%] top-[20%] text-BodyMedium font-medium text-gray-700">
-            on your first order{" "}
-          </p>
-          <Button
-            icon={true}
-            variant="ghost"
-            className="absolute left-[27%] top-[30%]"
-          >
-            Shop now
-          </Button>
-        </section>
-       
-      </section>
-
-      <section className="col-span-3">
-        <div className="grid grid-cols-3 gap-4">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={() => handleAddToCart(product.id)}
-              className={`rounded-lg p-2`}
+            {isExpanded.tags && (
+              <>
+                {tags.map(({ tag, id }) => (
+                  <button
+                    key={id}
+                    onClick={() => toggleTag(tag)}
+                    className={`my-1 mr-1 rounded-full px-3 py-1 text-BodySmall ${
+                      selectedTags.includes(tag)
+                        ? "bg-Primary text-White"
+                        : "bg-gray-100"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </>
+            )}
+          </section>
+          <section className="relative">
+            <img
+              className="h-[295px] w-full"
+              src="img/categorybanner.png"
+              alt=""
             />
-          ))}
-        </div>
+            <div className="absolute left-[25%] top-2 flex items-baseline">
+              <span className="text-Heading05 font-semibold text-Warning">
+                79%
+              </span>
+              <p className="text-BodyXXL font-regular">Discount </p>
+            </div>
+            <p className="absolute left-[30%] top-[20%] text-BodyMedium font-medium text-gray-700">
+              on your first order{" "}
+            </p>
+            <Button
+              icon={true}
+              variant="ghost"
+              className="absolute left-[27%] top-[30%]"
+            >
+              Shop now
+            </Button>
+          </section>
+        </section>
+
+        <section className="col-span-3">
+          <div className="grid grid-cols-3 gap-4">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAdd={() => onAdd(product)}
+                className={`h-[337px] w-[312px] rounded-lg p-1`}
+              />
+            ))}
+          </div>
+        </section>
       </section>
-    </section>
     </>
   );
-  
-  };
+};
 
 export default ProductFilter;

@@ -23,7 +23,7 @@ const Singlepage = () => {
   console.log("Rendering Filters component");
 
   return (
-    <div className="grid grid-cols-3 gap-12 mt-12">
+    <div className="mt-12 grid grid-cols-3 gap-12">
       <section className="col-span-2">
         <img
           src={blog?.image}
@@ -92,32 +92,41 @@ const Singlepage = () => {
           </div>
         </div>
         <section className="mt-10">
-          <h2 className="text-BodyXL font-medium mb-4">Leave a Comment</h2>
+          <h2 className="mb-4 text-BodyXL font-medium">Leave a Comment</h2>
 
           <div className="flex space-x-4">
             <div className="flex w-1/2 flex-col">
-              <label htmlFor="" className="text-BodySmall font-regular">Full Name</label>
+              <label htmlFor="" className="text-BodySmall font-regular">
+                Full Name
+              </label>
               <input
                 type="text"
                 placeholder="Zakir Hossen"
-                className="h-12 border-[1px] border-gray-100 rounded-xl pl-5"
+                className="h-12 rounded-xl border-[1px] border-gray-100 pl-5"
               />
             </div>
             <div className="flex w-1/2 flex-col">
-              <label htmlFor="" className="text-BodySmall font-regular">Email</label>
+              <label htmlFor="" className="text-BodySmall font-regular">
+                Email
+              </label>
               <input
                 type="email"
                 placeholder="Your Email"
-                className="h-12 border-[1px] border-gray-100 rounded-xl pl-5"
+                className="h-12 rounded-xl border-[1px] border-gray-100 pl-5"
               />
             </div>
           </div>
           <div className="mt-4">
             <label htmlFor="">Message</label>
-            <textarea placeholder="Write your comment here..." className="w-full text-gray-600 text-BodyMedium font-regular border-[1px] border-gray-100 rounded-xl pl-5 pt-2" name="message" id="mess"></textarea>
+            <textarea
+              placeholder="Write your comment here..."
+              className="w-full rounded-xl border-[1px] border-gray-100 pl-5 pt-2 text-BodyMedium font-regular text-gray-600"
+              name="message"
+              id="mess"
+            ></textarea>
           </div>
         </section>
-        <Comments/>
+        <Comments />
       </section>
 
       <div className="col-span-1">
