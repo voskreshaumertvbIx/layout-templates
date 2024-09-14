@@ -8,6 +8,7 @@ import Header from "../component/header_component/header";
 import Navbar from "../component/header_component/navbar";
 import Newsletter from "../component/footer_components/newsletter";
 import TopBar from "../component/header_component/topbar";
+import { ProductProvider } from "../hooks/useProductContext";
 
 const BlogPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,7 +27,7 @@ const BlogPage: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <ProductProvider>
       <TopBar />
       <Header />
       <Navbar />
@@ -46,7 +47,7 @@ const BlogPage: React.FC = () => {
       </section>
       <Newsletter />
       <Footer />
-    </>
+    </ProductProvider>
   );
 };
 

@@ -8,6 +8,8 @@ import SingleBlogPage from "../page/singleblogpage";
 import Aboutus from "../page/aboutus";
 import Categories from "../page/categories";
 import ContactPage from "../page/contactus";
+import SingleProductpage from "../page/singleProductpage";
+
 
 const AppRoutes = () => {
   return (
@@ -20,6 +22,9 @@ const AppRoutes = () => {
       <Route path={ROUTES.blog} element={<BlogPage />} />
       <Route path={ROUTES.aboutus} element={<Aboutus />} />
       <Route path={ROUTES.contactus} element={<ContactPage />} />
+      <Route path={`${ROUTES.categories}/:id`} element={<SingleProductpage/>} />
+     
+
     </Routes>
   );
 };

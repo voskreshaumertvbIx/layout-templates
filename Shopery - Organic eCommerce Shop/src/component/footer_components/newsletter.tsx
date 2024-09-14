@@ -26,20 +26,7 @@ const Newsletter = () => {
         >
           Subcribe
         </Button>
-        <div className="ml-[60px] flex items-center space-x-4">
-          {["instagram", "pinterest", "twitter"].map((icon) => (
-            <div
-              key={icon}
-              className="flex h-[40px] w-[40px] items-center justify-center rounded-full hover:bg-Primary"
-            >
-              <img
-                className="h-[18px] w-[18px]"
-                src={`/img/socials/${icon}.png`}
-                alt={icon}
-              />
-            </div>
-          ))}
-        </div>
+       q
       </div>
     </section>
   );

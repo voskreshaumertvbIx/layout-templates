@@ -9,7 +9,7 @@ const ProductCardLarge = () => {
   const { products, onAdd } = useProductContext();
   const productlarge = products[0];
   return (
-    <div className="relative z-10 flex h-[654px] w-[528px] flex-col border border-gray-100 hover:border-[2px] hover:border-Primary hover:shadow-lg">
+    <div className="relative  flex h-[654px] w-[528px] flex-col border border-gray-100 hover:border-[2px] hover:border-Primary hover:shadow-lg">
       <div className="absolute left-4 top-4 flex space-x-2">
         {productlarge.sale && (
           <Badge variant="sale">Sale {productlarge.sale}%</Badge>

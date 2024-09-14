@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
+import { products } from "../component/product_cart/product";
 export interface Product {
   id: number;
   name: string;
@@ -10,18 +11,17 @@ export interface Product {
   type:string;
   rating:string;
   tags:string[];
-}
-
-export interface CartProduct extends Product {
   quantity: number; 
 }
 
+
+
 interface ProductContextProps {
   products: Product[];
-  cart: CartProduct[];
+  cart: Product[];
   onAdd: (product: Product) => void;
   onDelete: (productId: number) => void;
-  calculateTotal:(cart:CartProduct[])=>number
+  calculateTotal: (cart: Product[]) => number;
   calculateProduct: number;
 }
 
@@ -38,7 +38,7 @@ export const useProductContext = () => {
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cart, setCart] = useState<CartProduct[]>(() => {
+  const [cart, setCart] = useState<Product[]>(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
@@ -50,20 +50,20 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
   const onAdd = (product: Product) => {
     setCart((prevCart) => {
       const productExists = prevCart.find((item) => item.id === product.id);
-
+  
       if (productExists) {
         return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + product.quantity } 
+            : item
         );
       }
-
-    
-      return [...prevCart, { ...product, quantity: 1 }];
+ 
+      return [...prevCart, { ...product }];
     });
-
-    
   };
-  const calculateTotal = (cart: CartProduct[]): number => {
+  
+  const calculateTotal = (cart: Product[]): number => {
     return cart.reduce((acc, item) => acc + (item.discountPrice || item.price) * item.quantity, 0);
   };
   const calculateProduct = cart.length;
@@ -79,126 +79,11 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
           }
         }
         return item;
-      }).filter(Boolean) as CartProduct[] 
+      }).filter(Boolean) as Product[] 
     );
   };
 
-   const products: Product[] = [
-    {
-      id: 1,
-      name: "Green Apple",
-      image: "/img/Products/apple.png",
-      price: 20.99,
-      discountPrice: 14.99,
-      sale: 50,
-      type: "Fresh Fruit",
-      rating: "5",
-      tags: ["Healthy", "Low fat", "Fruit"],
-    },
-    {
-      id: 2,
-      name: "Fresh Indian Malta",
-      image: "/img/Products/orange.png",
-      price: 20.0,
-      type: "Fresh Fruit",
-      rating: "4",
-      tags: ["Healthy", "Vitamins", "Fruit"],
-    },
-    {
-      id: 3,
-      name: "Chinese cabbage",
-      image: "/img/Products/cabbage.png",
-      price: 12.0,
-      type: "Vegetable",
-      rating: "4",
-      tags: ["Healthy", "Vegetarian", "Vegetable"],
-    },
-    {
-      id: 4,
-      name: "Green Lettuce",
-      image: "/img/Products/lettuce.png",
-      price: 9.0,
-      type: "Vegetable",
-      rating: "3",
-      tags: ["Vegetarian", "Low fat", "Vegetable"],
-    },
-    {
-      id: 5,
-      name: "Eggplant",
-      image: "img/Products/eggplant.png",
-      price: 34.0,
-      type: "Vegetable",
-      rating: "5",
-      tags: ["Vegetarian", "Low fat", "Vegetable"],
-    },
-    {
-      id: 6,
-      name: "Big Potatoes",
-      image: "/img/Products/potatoes.png",
-      price: 20.0,
-      type: "Vegetable",
-      rating: "3",
-      tags: ["Vitamins", "Vegetarian", "Vegetable"],
-    },
-    {
-      id: 7,
-      name: "Corn",
-      image: "/img/Products/corn.png",
-      price: 20.0,
-      type: "Vegetable",
-      rating: "4",
-      tags: ["Healthy", "Low fat", "Vegetable"],
-    },
-    {
-      id: 8,
-      name: "Fresh Cauliflower",
-      image: "/img/Products/cauliflower.png",
-      price: 12.0,
-      type: "Vegetable",
-      rating: "3",
-      tags: ["Vegetarian", "Low fat", "Vegetable"],
-    },
-    {
-      id: 9,
-      name: "Green Capsicum",
-      image: "/img/Products/capsicum.png",
-      price: 20.99,
-      discountPrice: 9.0,
-      sale: 50,
-      type: "Vegetable",
-      rating: "4",
-      tags: ["Vegetarian", "Low fat", "Vegetable"],
-    },
-    {
-      id: 10,
-      name: "Green Chili",
-      image: "/img/Products/chili.png",
-      price: 34.0,
-      type: "Vegetable",
-      rating: "5",
-      tags: ["Spicy", "Vitamins", "Vegetable"],
-    },
-    {
-      id: 11,
-      name: "Red Tomatoes",
-      image: "/img/Products/tomato.png",
-      price: 20.99,
-      discountPrice: 9.0,
-      sale: 50,
-      type: "Vegetable",
-      rating: "4",
-      tags: ["Vitamins", "Healthy", "Vegetable"],
-    },
-    {
-      id: 12,
-      name: "Surjapur Mango",
-      image: "/img/Products/mango.png",
-      price: 34.0,
-      type: "Fresh fruit",
-      rating: "5",
-      tags: ["Healthy", "Low fat", "Fruit"],
-    },
-  ];
+   
   
 
   return (
