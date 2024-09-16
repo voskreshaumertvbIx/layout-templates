@@ -26,7 +26,7 @@ const Newsletter = () => {
         >
           Subcribe
         </Button>
-       q
+       
       </div>
     </section>
   );

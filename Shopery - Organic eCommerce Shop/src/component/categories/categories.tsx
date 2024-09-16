@@ -23,6 +23,7 @@ export const CategoryButton: React.FC<CategoryButtonProps> = ({
   selectedCategory,
   setSelectedCategory,
   count,
+  
 }) => {
   return (
     <div className="mt-2 flex items-center">

@@ -5,6 +5,7 @@ import Newsletter from "../component/footer_components/newsletter";
 import TopBar from "../component/header_component/topbar";
 import ContactUs from "../component/contactus/contact_us";
 import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
+import { ProductProvider } from "../hooks/useProductContext";
 
 const mapContainerStyle = {
   width: "100%",
@@ -18,7 +19,7 @@ const center = {
 
 const ContactPage = () => {
   return (
-    <div>
+    <ProductProvider>
       <TopBar />
       <Header />
       <Navbar />
@@ -34,7 +35,7 @@ const ContactPage = () => {
       </LoadScript>
       <Newsletter />
       <Footer />
-    </div>
+    </ProductProvider>
   );
 };
 

@@ -9,6 +9,8 @@ import Aboutus from "../page/aboutus";
 import Categories from "../page/categories";
 import ContactPage from "../page/contactus";
 import SingleProductpage from "../page/singleProductpage";
+import CheckoutPage from "../page/checkout";
+
 
 
 const AppRoutes = () => {
@@ -23,6 +25,7 @@ const AppRoutes = () => {
       <Route path={ROUTES.aboutus} element={<Aboutus />} />
       <Route path={ROUTES.contactus} element={<ContactPage />} />
       <Route path={`${ROUTES.categories}/:id`} element={<SingleProductpage/>} />
+      <Route path={ROUTES.checkout} element={<CheckoutPage/>} />
      
 
     </Routes>

@@ -1,10 +1,13 @@
 import React from 'react';
 import { useProductContext } from '../../hooks/useProductContext';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../routes/routes';
 interface ShoppingcardProps {
   onClose: () => void;
 
 }
 const Cart: React.FC<ShoppingcardProps>=({onClose}) => {
+  const navigate = useNavigate();
   const {cart, onDelete,calculateTotal, calculateProduct} = useProductContext();
   return (
     <div className="fixed right-0 top-0 h-full w-[400px] bg-white shadow-lg p-4 z-20">
@@ -34,7 +37,7 @@ const Cart: React.FC<ShoppingcardProps>=({onClose}) => {
     </div>
 
     <div className="mt-6 space-y-2">
-      <button className="w-full bg-green-600 text-white py-2 rounded">Checkout</button>
+      <button onClick={()=>(navigate(ROUTES.checkout))} className="w-full bg-green-600 text-white py-2 rounded">Checkout</button>
       <button className="w-full bg-green-100 text-green-600 py-2 rounded">Go To Cart</button>
     </div>
   </div>
