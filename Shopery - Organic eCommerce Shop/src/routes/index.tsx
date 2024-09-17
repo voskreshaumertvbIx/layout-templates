@@ -9,6 +9,9 @@ import Aboutus from "../page/aboutus";
 import Categories from "../page/categories";
 import ContactPage from "../page/contactus";
 import SingleProductpage from "../page/singleProductpage";
+
+import CartPage from "../page/cartPage";
+
 import CheckoutPage from "../page/checkout";
 
 
@@ -26,7 +29,8 @@ const AppRoutes = () => {
       <Route path={ROUTES.contactus} element={<ContactPage />} />
       <Route path={`${ROUTES.categories}/:id`} element={<SingleProductpage/>} />
       <Route path={ROUTES.checkout} element={<CheckoutPage/>} />
-     
+      <Route path={ROUTES.cart} element={<CartPage/>} />
+      
 
     </Routes>
   );

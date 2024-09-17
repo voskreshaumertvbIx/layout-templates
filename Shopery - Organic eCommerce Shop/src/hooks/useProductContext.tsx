@@ -11,7 +11,7 @@ export interface Product {
   type:string;
   rating:string;
   tags:string[];
-  quantity: number; 
+  quantity: number ; 
 }
 
 
@@ -21,6 +21,7 @@ interface ProductContextProps {
   cart: Product[];
   onAdd: (product: Product) => void;
   onDelete: (productId: number) => void;
+  updateCartQuantity: (id: number, quantity: number) => void;
   calculateTotal: (cart: Product[]) => number;
   calculateProduct: number;
 }
@@ -70,24 +71,20 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
   
   const onDelete = (productId: number) => {
     setCart((prevCart) => 
-      prevCart.map((item) => {
-        if (item.id === productId) {
-          if (item.quantity > 1) {
-            return { ...item, quantity: item.quantity - 1 };
-          } else {
-            return null;
-          }
-        }
-        return item;
-      }).filter(Boolean) as Product[] 
+    prevCart.filter((product)=> productId !== product.id)
+  )};
+  const updateCartQuantity = (id: number, change: number) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + change} : item
+      )
     );
   };
-
    
   
 
   return (
-    <ProductContext.Provider value={{ products, cart, onAdd, onDelete, calculateTotal, calculateProduct}}>
+    <ProductContext.Provider value={{ products, cart, onAdd, onDelete, calculateTotal, calculateProduct,updateCartQuantity}}>
       {children}
     </ProductContext.Provider>
   );

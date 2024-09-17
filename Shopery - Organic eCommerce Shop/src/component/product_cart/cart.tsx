@@ -38,7 +38,7 @@ const Cart: React.FC<ShoppingcardProps>=({onClose}) => {
 
     <div className="mt-6 space-y-2">
       <button onClick={()=>(navigate(ROUTES.checkout))} className="w-full bg-green-600 text-white py-2 rounded">Checkout</button>
-      <button className="w-full bg-green-100 text-green-600 py-2 rounded">Go To Cart</button>
+      <button onClick={()=>(navigate(ROUTES.cart))} className="w-full bg-green-100 text-green-600 py-2 rounded">Go To Cart</button>
     </div>
   </div>
   );

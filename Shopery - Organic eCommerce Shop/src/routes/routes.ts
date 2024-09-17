@@ -6,5 +6,6 @@ export const ROUTES = {
   blog: "/blog",
   aboutus: "/aboutus",
   contactus: "contactus",
-  checkout:'/checkout'
+  checkout:'/checkout',
+  cart:'/cart'
 };

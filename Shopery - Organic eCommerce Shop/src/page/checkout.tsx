@@ -1,4 +1,4 @@
-import React from "react";
+
 import { ProductProvider } from "../hooks/useProductContext";
 import Checkout from "../component/product_cart/checkout";
 import Header from "../component/header_component/header";
@@ -14,8 +14,8 @@ const CheckoutPage = () => {
       <Header />
       <Navbar />
       <Checkout />
-      <Newsletter/>
-      <Footer/>
+      <Newsletter />
+      <Footer />
     </ProductProvider>
   );
 };
