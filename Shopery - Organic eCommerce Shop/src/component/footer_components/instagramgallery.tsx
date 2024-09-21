@@ -11,13 +11,13 @@ const InstagramGallery = () => {
   ];
 
   return (
-    <div className="mt-4 flex flex-col justify-center gap-4">
+    <div className="mt-4 flex flex-col flex-wrap justify-center gap-4 max-lg:mx-4 ">
       <div>
-        <h1 className="text-center text-Heading05 font-semibold text-gray-900">
+        <h1 className="text-center text-Heading05 font-semibold text-gray-900 max-sm:text-BodyXXL">
           Follow us on Instagram
         </h1>
       </div>
-      <div className="flex justify-center gap-6">
+      <div className="flex justify-center gap-6 max-md:grid max-md:grid-cols-3">
         {images.map((src, index) => (
           <div
             key={index}

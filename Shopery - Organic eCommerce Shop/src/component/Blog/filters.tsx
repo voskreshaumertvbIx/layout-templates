@@ -8,6 +8,7 @@ import {
   resentlyAdded,
   tagsBlog,
 } from "./blogData";
+import Button from "../Reusable component/buttons";
 
 //ADD USEDEBAUNCE
 
@@ -18,6 +19,8 @@ interface FiltersProps {
 const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   console.log("Rendering Singlepage component");
 
@@ -51,8 +54,8 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
   }, [selectedTags, selectedCategory, onFilterChange]);
 
   return (
-    <section>
-      <div className="relative w-full border-b border-gray-100">
+    <section className="container max-xl:w-1/3 max-2xl:w-[75%]">
+      <div className="relative w-full border-b border-gray-100 max-xl:hidden">
         <CiSearch className="absolute left-4 top-3.5 h-5 w-5" />
         <input
           type="text"
@@ -60,8 +63,13 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
           className="mb-7 w-full rounded border py-3 pl-10 pr-4"
         />
       </div>
-
-      <div className="border-b border-gray-100">
+      <Button
+        onClick={() => setMenuOpen(true)}
+        className="hidden max-lg:m-auto max-lg:mt-5 max-lg:flex"
+      >
+        Filters
+      </Button>
+      <div className="border-b border-gray-100 max-lg:hidden">
         <h2 className="my-5 text-BodyXL font-medium">Top Categories</h2>
         <div className="flex flex-col gap-1 last-of-type:mb-6">
           {categories.map((category) => (
@@ -75,7 +83,7 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
           ))}
         </div>
       </div>
-      <section className="border-b border-gray-100">
+      <section className="border-b border-gray-100 max-lg:hidden">
         <h2 className="my-5 text-BodyXL font-medium text-gray-900">
           Popular Tags
         </h2>
@@ -95,7 +103,7 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
         ))}
       </section>
 
-      <section className="">
+      <section className="max-xl:hidden">
         <h2 className="my-5 text-BodyXL font-medium">Our Gallery</h2>
         <div className="grid grid-cols-4 gap-2">
           {Gallery.map((blog: BlogData) => (
@@ -129,6 +137,60 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
           ))}
         </div>
       </section>
+      {menuOpen && (
+        <section className="fixed inset-0 z-[999] flex flex-col items-center overflow-auto bg-white max-lg:p-4 h-auto ">
+          <div className="relative  border-b border-gray-100 ">
+            <CiSearch className="absolute left-4 top-3.5 h-5 w-5" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="mb-7 w-full rounded border py-3 pl-10 pr-4"
+            />
+          </div>
+        
+          <div className="border-b border-gray-100 max-lg:hidden">
+            <h2 className="my-5 text-BodyXL font-medium">Top Categories</h2>
+            <div className="flex flex-col gap-1 last-of-type:mb-6">
+              {categories.map((category) => (
+                <CategoryButton
+                  key={category}
+                  count={countProductsByCategory(category)}
+                  label={category}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              ))}
+            </div>
+          </div>
+          <section className="border-b border-gray-100 w-[75%]" >
+            <h2 className="my-5 text-BodyXL font-medium text-gray-900 ">
+              Popular Tags
+            </h2>
+
+            {tagsBlog.map(({ tag, id }) => (
+              <button
+                key={id}
+                onClick={() => toggleTag(tag)}
+                className={`my-1 mr-1 rounded-full px-3 py-1 text-BodySmall last-of-type:mb-7 ${
+                  selectedTags.includes(tag)
+                    ? "bg-Primary text-White"
+                    : "bg-gray-100"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </section>
+          <Button
+            onClick={() => setMenuOpen(false)}
+            className="max-lg:m-auto max-lg:mt-5 max-lg:flex"
+          >
+            Close
+          </Button>
+        </section>
+        
+      )}
+       
     </section>
   );
 };

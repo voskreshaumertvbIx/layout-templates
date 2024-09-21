@@ -9,11 +9,12 @@ export interface BlogProps {
 
 const Blog: React.FC<BlogProps> = ({ blog }) => {
   return (
-    <div className="grid grid-cols-2">
+    <div className="container">
+    <div className="grid grid-cols-2 gap-5 max-md:flex max-md:flex-wrap">
       {blog.map((info) => (
         <div
           key={info.id}
-          className="mb-3 h-[494px] w-[424px] rounded-md border-[1px] border-gray-100"
+          className="mb-3 h-[494px] w-[424px] rounded-md border-[1px] border-gray-100 max-2xl:w-[375px] max-xl:!w-[330px] max-xl:m-auto  "
         >
           <img
             className="h-[324px] w-[424px] rounded-md object-cover"
@@ -37,6 +38,7 @@ const Blog: React.FC<BlogProps> = ({ blog }) => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 };

@@ -7,18 +7,31 @@ const HotDeals = () => {
   const { products, onAdd } = useProductContext();
 
   return (
-    <div>
+    <div className="container px-4">
       <SectionHeader linkText="View All" title="Hot Deals" linkUrl="" />
-      <div className="grid grid-cols-5 grid-rows-[repeat(3,_minmax(0,_1fr))] border">
+
+      <div className="hidden max-lg:m-auto max-lg:block">
+        <ProductCardLarge></ProductCardLarge>
+      </div>
+
+      <div className="mx-5 grid grid-cols-5 max-md:flex max-md:flex-wrap max-md:justify-center max-md:items-center max-lg:!grid-cols-3 max-xl:grid-cols-4 ">
         {products.map((product, index) => (
           <div
             key={product.id}
-            className={index === 0 ? "col-span-2 row-span-2" : ""}
+            className={
+              index === 0
+                ? "col-span-2 row-span-2 border border-gray-100 max-lg:hidden"
+                : ""
+            }
           >
             {index === 0 ? (
               <ProductCardLarge />
             ) : (
-              <ProductCard product={product} onAdd={() => onAdd(product)} />
+              <ProductCard
+                product={product}
+                onAdd={() => onAdd(product)}
+                className="w-full max-se:w-[175px] max-md:!w-[200px] max-lg:max-w-[100%] max-lg:w-full"
+              />
             )}
           </div>
         ))}

@@ -53,11 +53,11 @@ const Login = () => {
   };
 
   return (
-    <section className="mt-[80px] flex flex-col items-center justify-center">
+    <section className="mt-[80px]  flex flex-col items-center justify-center w-full">
       <form
         action=""
         onSubmit={handleSubmit}
-        className="flex max-h-[540px] w-[33%] flex-col items-center gap-4 shadow-lg"
+        className="flex max-h-[540px] max-lg:min-w-[365px] w-[33%] flex-col items-center gap-4 shadow-lg"
         noValidate
       >
         <h1 className="mt-6 text-Heading05 font-semibold">Sign in</h1>
@@ -67,7 +67,7 @@ const Login = () => {
           value={formData.email}
           placeholder="Email"
           type="email"
-          className="h-12 w-[370px] rounded-xl border-[1px] px-3"
+          className="h-12  w-[23vw] min-w-[275px] rounded-xl border-[1px] px-3"
           validationState={validation.email.state}
           validationMessage={validation.email.message}
         />
@@ -77,25 +77,25 @@ const Login = () => {
           value={formData.password}
           placeholder="Password"
           type="password"
-          className="h-12 w-[370px] rounded-xl border-[1px] px-3"
+          className="h-12 w-[23vw] min-w-[275px] rounded-xl border-[1px] px-3"
           validationState={validation.password.state}
           validationMessage={validation.password.message}
         />
 
-        <div className="mb-5 flex w-[85%] justify-between text-BodySmall font-regular text-gray-600">
-          <label className="flex items-center">
+        <div className="mb-5 flex w-[85%] justify-between text-BodySmall font-regular text-gray-600 max-lg:flex-col max-lg:justify-center max-lg:items-center">
+          <label className="flex items-center ">
             <input
               name="termsAccepted"
               type="checkbox"
               onChange={handleChange}
-              className="mr-2 h-5 w-5"
+              className="mr-2 h-5 w-5 max-lg:"
             />
             Remember me
           </label>
-          <p>Forget Password</p>
+          <p className="max-lg:mt-2">Forget Password</p>
         </div>
 
-        <Button className="mb-4 w-[375px]">Create Account</Button>
+        <Button className="mb-4 w-[23vw] min-w-[275px]">Create Account</Button>
 
         <p className="mb-5 text-BodySmall font-regular">
           Don’t have account?{" "}

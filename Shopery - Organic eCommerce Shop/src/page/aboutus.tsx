@@ -12,7 +12,7 @@ import { ProductProvider } from "../hooks/useProductContext";
 
 const Aboutus = () => {
   return (
-    <div>
+    <div className="">
       <ProductProvider>
       <TopBar />
       <Header />

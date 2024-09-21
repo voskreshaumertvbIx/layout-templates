@@ -22,9 +22,9 @@ import PopularCategories from "../component/main_content_comps/popular_categorie
 
 const MainPage = () => {
   return (
+    <>
     <ProductProvider>
       <TopBar />
-
       <Header />
       <Navbar />
       <Promocards />
@@ -42,7 +42,9 @@ const MainPage = () => {
       <Newsletter />
       <PopupModal />
       <Footer />
+      
     </ProductProvider>
+    </>
   );
 };
 

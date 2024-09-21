@@ -5,7 +5,8 @@ import Button from "../Reusable component/buttons";
 const Checkout = () => {
   const { cart, calculateTotal } = useProductContext();
   return (
-    <section className="grid grid-cols-3 h-auto">
+    
+    <section className="container grid grid-cols-3 h-auto max-2xl:grid-cols-1">
      
       <div className="col-span-2">
         <div className="mx-auto max-w-4xl rounded-md bg-white p-6 ">
@@ -119,7 +120,7 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col border-[1px] border-gray-100 p-6 rounded-md mt-6"  style={{ maxHeight: `${400 + cart.length * 60}px` }}>
+      <div className="flex flex-col border-[1px] border-gray-100 p-6 rounded-md mt-6 max-2xl:w-1/2 max-2xl:m-auto max-md:!w-[343px]"  style={{ maxHeight: `${400 + cart.length * 60}px` }}>
         <h1 className="text-BodyXL font-medium">Order Summery</h1>
         {cart.map((cart) => (
           <div className="flex w-[100%] items-center text-BodySmall font-regular">
@@ -176,6 +177,7 @@ const Checkout = () => {
         </div>
       </div>
     </section>
+   
   );
 };
 

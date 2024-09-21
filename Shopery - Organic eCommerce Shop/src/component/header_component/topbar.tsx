@@ -5,13 +5,14 @@ import ListIcon from "../../assets/icons/listIcon";
 const TopBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex h-[42px] justify-between text-BodyTiny font-regular text-gray-600">
-      <div className="flex h-full w-full items-center">
+    <div className="container">
+    <div className="flex h-[42px] justify-between text-BodyTiny font-regular text-gray-600 max-xl:justify-around max-md:flex-col  max-md:items-center max-md:h-[60px]">
+      <div className="flex  items-center">
         <img className="mr-2" src="/img/icon/mappin.png" alt="map pin" />
         <p>Store Location: Lincoln- 344, Illinois, Chicago, USA</p>
       </div>
 
-      <div className="flex w-[300px] items-center space-x-4">
+      <div className="flex items-center space-x-4 max-md:mb-2">
         <p className="flex items-center">
           Eng <ListIcon />
         </p>
@@ -34,6 +35,7 @@ const TopBar = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

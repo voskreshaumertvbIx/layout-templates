@@ -31,19 +31,19 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
     (price * quantity).toFixed(2);
 
   return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50 text-black">
-      <div className="relative flex h-[636px] w-[1200px] rounded-lg bg-white p-10 shadow-lg">
-        <section className="h-full w-1/2">
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50 text-black mx-4">
+      <div className="relative flex h-[636px] w-[1200px] rounded-lg bg-white p-10 shadow-lg max-lg:p-5 max-md:flex-col max-md:items-center max-md:h-auto max-se:w-[370px] ">
+        <section className="h-full w-1/2 max-lg:w-[350px] max-md:justify-center max-md:flex overflow-y-auto">
           <img
             src={product.image}
-            className="h-full w-full object-scale-down"
+            className="h-full w-full object-scale-down max-lg:w-3/4"
             alt={product.name}
           />
         </section>
-        <section className="flex h-full w-1/2 flex-col">
+        <section className="flex h-full w-1/2 flex-col max-md:w-full ">
           <div className="border-b border-gray-100 border-opacity-70">
-            <h1 className="mb-3 text-Heading04 font-medium">{product.name}</h1>
-            <div className="mb-3 flex w-[48%] items-center">
+            <h1 className="mb-3 text-Heading04 font-medium max-lg:text-BodyXXL">{product.name}</h1>
+            <div className="mb-3 flex w-[48%] items-center max-xl:flex-col max-xl:items-start ">
               <img src="/img/q.png" className="mr-1" alt="" />
               <p className="mr-3 text-BodySmall text-gray-600">4: Review</p>
               <p>SKU: 2,51,594</p>
@@ -104,7 +104,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
               </button>
               <p className="mx-2 text-BodyMedium font-medium">{quantity}</p>
               <button
-                className="rounded-full bg-gray-50 px-4 py-2 text-BodyXL"
+                className="rounded-full bg-gray-50 px-4 py-2 text-BodyXL max-lg:text-BodyLarge"
                 onClick={() => handleQuantityChange(1)}
               >
                 +
@@ -120,7 +120,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 Add to Cart
               </Button>
             </div>
-            <div className="relative">
+            <div className="relative max-lg:hidden">
               <img
                 className="rounded-full hover:bg-Primary"
                 src="/img/Button.svg"
@@ -131,7 +131,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
           <button
             onClick={onClose}
-            className="absolute right-[30px] h-[40px] w-[40px] rounded-full border-[1px]"
+            className="absolute right-[30px] h-[40px] w-[40px] rounded-full border-[1px] max-md:top-[30px] max-"
           >
             ✖
           </button>

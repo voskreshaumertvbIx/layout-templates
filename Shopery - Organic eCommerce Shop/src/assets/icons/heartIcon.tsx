@@ -23,7 +23,7 @@ const HeartIcon: FC<HeartProps> = ({
 
   const buttonClasses = classNames(
     'rounded-full flex items-center justify-center transition-all',
-    className
+    
   );
 
   const iconSrc =
@@ -47,7 +47,7 @@ const HeartIcon: FC<HeartProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img  src={iconSrc} alt="icon" className="w-[40px] h-[40px]" />
+      <img  src={iconSrc} alt="icon" className={`w-[40px] h-[40px] ${className}`} />
     </button>
   );
 };

@@ -27,16 +27,21 @@ const BlogPage: React.FC = () => {
   }, []);
 
   return (
+    <div className="">
     <ProductProvider>
       <TopBar />
       <Header />
       <Navbar />
-      <section className="mt-12 grid grid-cols-3 gap-6">
-        <div className="col-span-1">
+      <div className="hidden max-lg:flex"> <Filters onFilterChange={handleFilterChange} /></div>
+      <div className="container">
+      <section className="grid mt-12 grid-cols-3 gap-6 max-lg:flex  max-lg:justify-center" >
+        
+        <div className="max-lg:hidden">
           <Filters onFilterChange={handleFilterChange} />
+          
         </div>
-        <div className="col-span-2">
-          <Blog blog={currentBlog} />
+        <div className="col-span-2  ">
+          <Blog blog={currentBlog}  />
           <Pagination
             currentPage={currentPage}
             blogPerPage={blogPerPage}
@@ -45,9 +50,11 @@ const BlogPage: React.FC = () => {
           />
         </div>
       </section>
+      </div>
       <Newsletter />
       <Footer />
     </ProductProvider>
+    </div>
   );
 };
 

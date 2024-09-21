@@ -5,16 +5,18 @@ import Footer from "../component/footer_components/footer";
 import Navbar from "../component/header_component/navbar";
 import Newsletter from "../component/footer_components/newsletter";
 import Register from "../component/header_component/SignUp/SignUp";
+import { ProductProvider } from "../hooks/useProductContext";
 
 const RegisterPage = () => {
   return (
+    <ProductProvider>
     <div className="flex h-[1176px] flex-col justify-between">
       <div>
         <TopBar />
         <Header />
         <Navbar />
       </div>
-      <div>
+      <div className="container">
         <Register />
       </div>
       <div>
@@ -22,6 +24,7 @@ const RegisterPage = () => {
         <Footer />
       </div>
     </div>
+    </ProductProvider>
   );
 };
 

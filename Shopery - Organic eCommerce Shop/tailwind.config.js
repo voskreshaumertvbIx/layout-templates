@@ -10,6 +10,7 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
       },
       fontSize:{
+
         BodyXXL: '24px',
         BodyXL: '20px',
         BodyLarge: '18px',
@@ -65,9 +66,18 @@ module.exports = {
       },
 
     },
+    screens: {
+      'max-se': {max:'440px'},
+      'max-sm': { max: '640px' },
+      'max-md': { max: '768px' },
+      'max-lg': { max: '1024px' },
+      'max-xl': { max: '1280px' },
+      'max-body': {max: '1320px'},
+      'max-2xl': { max: '1536px' },
   },
   plugins: [
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('tailwind-scrollbar'),
   ],
+}
 }

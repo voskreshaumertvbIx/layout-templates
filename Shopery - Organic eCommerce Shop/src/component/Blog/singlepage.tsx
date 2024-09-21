@@ -23,17 +23,18 @@ const Singlepage = () => {
   console.log("Rendering Filters component");
 
   return (
-    <div className="mt-12 grid grid-cols-3 gap-12">
-      <section className="col-span-2">
+    <div className="container">
+    <div className="mt-12 grid grid-cols-3 gap-12  ">
+      <section className="col-span-2 max-xl:col-span-3 max-xl:p-6">
         <img
           src={blog?.image}
-          className="h-[600px] w-[872px] rounded-md object-cover"
+          className="h-[600px] w-[872px] rounded-md object-cover max-xl:m-auto max-xl:w-3/4 max-xl:h-[300px]"
           alt={blog?.title}
         />
-        <img src="/img/info2.png" className="mb-4" alt="" />
-        <h1 className="mb-4 text-Heading05 font-medium">{blog?.title}</h1>
-        <div className="grid gap-4 text-BodyLarge font-regular text-gray-500">
-          <p className="text-BodyXL text-gray-900">
+        <img src="/img/info2.png" className="mb-4 m-auto" alt="" />
+        <h1 className="mb-4 text-Heading05 font-medium max-lg:text-BodyXL">{blog?.title}</h1>
+        <div className="grid gap-4 text-BodyLarge max-lg:text-BodySmall font-regular text-gray-500">
+          <p className="text-BodyXL text-gray-900 max-lg:text-BodyMedium">
             Maecenas lacinia felis nec placerat sollicitudin. Quisque placerat
             dolor at scelerisque imperdiet. Phasellus tristique felis dolor.
           </p>
@@ -52,9 +53,12 @@ const Singlepage = () => {
             Quisque eget tortor lobortis, facilisis metus eu, elementum est.
             Nunc sit amet erat quis ex convallis suscipit. ur ridiculus mus.
           </p>
-          <div className="flex gap-6">
-            <img src="/img/blogImg/forblog.png" alt="" />
-            <img src="/img/blogImg/forblog2.png" alt="" />
+          <div className="flex gap-6 m-auto max-sm:flex-col
+          
+          
+          ">
+            <img src="/img/blogImg/forblog.png" className="max-lg:w-[220px] max-lg:h-[170px]" alt="" />
+            <img src="/img/blogImg/forblog2.png" className="max-lg:w-[220px] max-lg:h-[170px]" alt="" />
           </div>
           <p>
             Sed dictum non nulla eu imperdiet. Duis elit libero, vulputate quis
@@ -67,7 +71,7 @@ const Singlepage = () => {
           </p>
         </div>
         <div
-          className="mt-6 flex items-center bg-no-repeat"
+          className="mt-6 flex items-center  bg-no-repeat max-xl:hidden"
           style={{
             backgroundImage: `url('/img/blogImg/forSingle.png')`,
             width: imageSize.width,
@@ -129,9 +133,10 @@ const Singlepage = () => {
         <Comments />
       </section>
 
-      <div className="col-span-1">
+      <div className="col-span-1 max-xl:hidden">
         <Filters />
       </div>
+    </div>
     </div>
   );
 };

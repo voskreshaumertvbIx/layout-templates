@@ -23,7 +23,6 @@ export const CategoryButton: React.FC<CategoryButtonProps> = ({
   selectedCategory,
   setSelectedCategory,
   count,
-  
 }) => {
   return (
     <div className="mt-2 flex items-center">
@@ -47,7 +46,7 @@ const ProductFilter: React.FC = () => {
   const [value, setValue] = useState<number[]>([min, max]);
   const [selectedRatings, setSelectedRatings] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { products, onAdd } = useProductContext();
 
   const [isExpanded, setIsExpanded] = useState({
@@ -99,9 +98,12 @@ const ProductFilter: React.FC = () => {
   });
 
   return (
-    <>
-      <div className="mt-5 flex items-center justify-between">
-        <button className="h-[35px] w-[101px] rounded-full bg-Primary text-BodySmall text-White">
+    <div className="container">
+      <div className="mt-5 flex items-center justify-between max-2xl:justify-around">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="h-[35px] w-[101px] rounded-full bg-Primary text-BodySmall text-White"
+        >
           Filter
         </button>
         <p className="text-BodyMedium font-medium text-gray-600">
@@ -112,7 +114,7 @@ const ProductFilter: React.FC = () => {
         </p>
       </div>
       <section className="mt-12 grid grid-cols-4 gap-4">
-        <section className="col-span-1 rounded-lg">
+        <section className="col-span-1 rounded-lg max-xl:p-4 max-lg:hidden">
           <section className="mb-4 flex flex-col items-start space-x-4 border-b border-gray-100">
             <div className="flex w-full items-center justify-between">
               <h2 className="text-BodyXL font-medium text-gray-900">
@@ -283,20 +285,186 @@ const ProductFilter: React.FC = () => {
           </section>
         </section>
 
+       
+
+
+
+
+ {isModalOpen && (
+<div className="relative">
+<section className="overflow-auto fixed inset-0 z-50 flex items-center  bg-white  max-lg:p-4 flex-col b">
+  <div className="flex max-md:flex-col max-md:items-center justify-around w-[85%] ">
+  
+          <section className="mb-4 flex flex-col items-start space-x-4 ">
+            <div className="flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">
+                All Categories
+              </h2>
+            </div>
+
+            {isExpanded.categories && (
+              <div className="mb-5">
+                <CategoryButton
+                  label="All"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("All")}
+                />
+                <CategoryButton
+                  label="Fresh Fruit"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Fresh Fruit")}
+                />
+                <CategoryButton
+                  label="Vegetable"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Vegetable")}
+                />
+                <CategoryButton
+                  label="Cooking"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Cooking")}
+                />
+                <CategoryButton
+                  label="Snacks"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Snacks")}
+                />
+                <CategoryButton
+                  label="Beverages"
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  count={countProductsByCategory("Beverages")}
+                />
+              </div>
+            )}
+          </section>
+
+          <section className="mb-5 w-[150px]">
+            <div className="flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">Price</h2>
+              
+            </div>
+
+            {isExpanded.price && (
+              <>
+                <Slider
+                  value={value}
+                  onChange={setValue}
+                  min={min}
+                  max={max}
+                  className="my-4 h-1.5 w-full rounded"
+                  thumbClassName="h-3 w-3 bg-White border-[1.5px] border-Primary rounded-full cursor-pointer transform -translate-y-1/3"
+                  pearling
+                  withTracks
+                  renderTrack={(props, state) => (
+                    <div
+                      {...props}
+                      className={`${
+                        state.index === 1 ? "bg-Primary" : "bg-gray-100"
+                      } h-1 rounded`}
+                    />
+                  )}
+                />
+                <p className="mb-6 text-BodySmall font-regular">
+                  Price:{" "}
+                  <span className="text-BodySmall font-medium">
+                    {value[0]} - {value[1]}
+                  </span>
+                </p>
+              </>
+            )}
+          </section>
+
+          <section className="mb-5">
+            <div className="mb-4 flex w-full items-center justify-between">
+              <h2 className="text-BodyXL font-medium text-gray-900">Rating</h2>
+            </div>
+
+            {isExpanded.rating && (
+              <>
+                {rating.map(({ value, img }) => (
+                  <div
+                    key={value}
+                    className="mb-2 flex items-center last-of-type"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedRatings.includes(value)}
+                      onChange={() => toggleRating(value)}
+                    />
+                    <img src={img} alt={`Rating ${value}`} />
+                  </div>
+                ))}
+              </>
+            )}
+          </section>
+          </div>
+          <section className="mb-[30px] w-3/4 flex flex-col justify-center items-center ">
+            <div className="mb-4">
+              <h2 className="text-BodyXL font-medium text-gray-900 text-center">
+                Popular Tags
+              </h2>
+            </div>
+
+            {isExpanded.tags && (
+              <div className="flex flex-wrap justify-center">
+                {tags.map(({ tag, id }) => (
+                  <button
+                    key={id}
+                    onClick={() => toggleTag(tag)}
+                    className={`my-1 mr-1 rounded-full px-3 py-1 text-BodySmall ${
+                      selectedTags.includes(tag)
+                        ? "bg-Primary text-White"
+                        : "bg-gray-100"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            )}
+          </section>
+          <Button onClick={()=>(setIsModalOpen(false))}>Close</Button>
+        </section>
+</div>
+ )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <section className="col-span-3">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 max-xl:flex max-xl:flex-wrap max-xl:justify-center">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
                 onAdd={() => onAdd(product)}
-                className={`h-[337px] w-[312px] rounded-lg p-1`}
+                className={`h-[337px] w-[312px] rounded-lg p-1 max-2xl:w-[280px]`}
               />
             ))}
           </div>
         </section>
       </section>
-    </>
+    </div>
   );
 };
 

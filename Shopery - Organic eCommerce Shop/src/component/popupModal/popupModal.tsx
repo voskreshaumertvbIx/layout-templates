@@ -22,11 +22,15 @@ const PopupModal = () => {
   };
 
   return (
-    <>
+    <div className="container">
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative flex w-1/2 rounded-lg bg-white p-6 shadow-lg">
-            <img src="/img/BG.png" alt="" />
+          <div className="relative flex w-[56%] rounded-lg bg-white p-6 shadow-lg  max-md:!w-[365px] max-md:p-2 max-2xl:w-[670px]">
+            <img
+              src="/img/BG.png"
+              className="max-md:hidden max-2xl:w-[300px]"
+              alt=""
+            />
             <div className="flex w-full flex-col items-center justify-center">
               <img
                 src="img/Close.png"
@@ -34,20 +38,18 @@ const PopupModal = () => {
                 className="absolute right-4 top-4 cursor-pointer"
                 onClick={handleClose}
               />
-              <h2 className="mb-4 text-center text-Heading03 font-bold">
-                Subscribe to Our Newsletter
+              <h2 className="mb-4 text-center text-Heading03 font-bold max-2xl:text-BodyXL">
+                Subscribe to Our <br />
+                Newsletter
               </h2>
-              <p className="mb-4 text-BodyMedium font-regular text-gray-400">
+              <p className="mb-4 text-center text-BodyMedium font-regular text-gray-400 max-2xl:text-BodySmall">
                 Subscribe to our newsletter and save your{" "}
-                <span className="font-bold text-Warning">
-                  20% <br />
-                  money
-                </span>{" "}
-                with discount code today.
+                <span className="font-bold text-Warning">20% <br className="max-2xl:hidden"/> money</span> with
+                discount code today.
               </p>
               <div className="flex items-center">
                 <InputField
-                  className="h-[45px] w-[343px] flex-grow rounded-l-full border border-gray-300 px-4 py-2 focus:outline-none"
+                  className="h-[45px] w-[343px] flex-grow rounded-l-full border border-gray-300 px-4 py-2 focus:outline-none max-2xl:w-[200px]"
                   value={email}
                   onChange={handleEmailChange}
                 />
@@ -71,7 +73,7 @@ const PopupModal = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

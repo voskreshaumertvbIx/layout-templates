@@ -59,11 +59,11 @@ const Register = () => {
   };
 
   return (
-    <section className="mt-[80px] flex flex-col items-center justify-center">
+    <section className="mt-[80px] flex flex-col items-center justify-center w-full">
       <form
         action=""
         onSubmit={handleSubmit}
-        className="flex max-h-[540px] w-[33%] flex-col items-center gap-4 shadow-lg"
+        className="flex max-h-[540px] max-lg:min-w-[365px] w-[33%] flex-col items-center gap-4 shadow-lg"
         noValidate
       >
         <h1 className="mt-6 text-Heading05 font-semibold">Create Account</h1>
@@ -73,7 +73,7 @@ const Register = () => {
           value={formData.email}
           placeholder="Email"
           type="email"
-          className="h-12 w-[370px] rounded-xl border-[1px] px-3"
+          className="h-12  w-[20vw] min-w-[275px] rounded-xl border-[1px] px-3"
           validationState={validation.email.state}
           validationMessage={validation.email.message}
         />
@@ -83,7 +83,7 @@ const Register = () => {
           value={formData.password}
           placeholder="Password"
           type="password"
-          className="h-12 w-[370px] rounded-xl border-[1px] px-3"
+          className="h-12  w-[20vw] min-w-[275px] rounded-xl border-[1px] px-3"
           validationState={validation.password.state}
           validationMessage={validation.password.message}
         />
@@ -93,11 +93,11 @@ const Register = () => {
           value={formData.confirmPassword}
           placeholder="Confirm Password"
           type="password"
-          className="h-12 w-[370px] rounded-xl border-[1px] px-3"
+          className="h-12  w-[20vw] min-w-[275px] rounded-xl border-[1px] px-3"
           validationState={validation.confirmPassword.state}
           validationMessage={validation.confirmPassword.message}
         />
-        <div className="mb-5 flex w-[85%] justify-between text-BodySmall font-regular text-gray-600">
+        <div className="mb-5 flex w-[85%] justify-center text-BodySmall font-regular text-gray-600">
           <label className="flex items-center">
             <input
               name="termsAccepted"
@@ -115,7 +115,7 @@ const Register = () => {
           )}
         </div>
 
-        <Button className="mb-4 w-[375px]">Create Account</Button>
+        <Button className="mb-4 w-[20vw] min-w-[275px]">Create Account</Button>
 
         <p className="mb-5 text-BodySmall font-regular">
           Already have an account?{" "}

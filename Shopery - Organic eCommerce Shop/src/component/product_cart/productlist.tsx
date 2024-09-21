@@ -10,14 +10,19 @@ const ProductList = ({ limit }: ProductListProps) => {
   const displayedProducts = limit ? products.slice(0, limit) : products;
 
   return (
-    <div className="grid grid-cols-5">
+    <div className="mx-5 max-sm:mx-0 mb-12">
+    <div className="container flex flex-wrap justify-center">
       {displayedProducts.map((product) => (
-        <ProductCard key={product.id} product={product} onAdd={onAdd} />
+        <ProductCard
+          key={product.id}
+          product={product}
+          onAdd={onAdd}
+          className=" max-2xl:w-[240px] max-md:w-[160px] max-md:h-[300px]"
+        />
       ))}
+    </div>
     </div>
   );
 };
 
 export default ProductList;
-
-

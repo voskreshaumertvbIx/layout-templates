@@ -9,6 +9,7 @@ import TopBar from '../component/header_component/topbar';
 
 const CartPage = () => {
   return (
+    <div className=''>
     <ProductProvider>
     <TopBar />
     <Header />
@@ -18,6 +19,7 @@ const CartPage = () => {
     <Newsletter />
     <Footer />
   </ProductProvider>
+  </div>
   );
 }
 

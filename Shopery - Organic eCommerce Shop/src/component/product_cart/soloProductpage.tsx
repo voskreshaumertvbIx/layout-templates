@@ -7,7 +7,9 @@ import Comments from "../Blog/comments";
 const SoloProductpage = () => {
   const { products, onAdd } = useProductContext();
   const { id } = useParams<{ id: string }>();
-  const [activeTab, setActivetab] = useState<"description" | "information" | "feedback">("information");
+  const [activeTab, setActivetab] = useState<
+    "description" | "information" | "feedback"
+  >("information");
 
   const pluses = [
     "100 g of fresh leaves provides.",
@@ -38,9 +40,9 @@ const SoloProductpage = () => {
   }
 
   return (
-    <section>
+    <section className="container">
       <div className="flex items-center justify-center bg-opacity-50 text-black">
-        <div className="relative flex h-[636px] w-[1200px] rounded-lg bg-white p-10">
+        <div className="relative flex h-[636px] w-[1200px] rounded-lg bg-white p-10 max-lg:h-auto max-lg:flex-col max-lg:items-center">
           <section className="h-full w-1/2">
             <img
               src={selectProduct.image}
@@ -48,12 +50,12 @@ const SoloProductpage = () => {
               alt={selectProduct.name}
             />
           </section>
-          <section className="flex h-full w-1/2 flex-col">
+          <section className="flex h-full w-1/2 flex-col max-lg:w-[95%]">
             <div className="border-b border-gray-100 border-opacity-70">
-              <h1 className="mb-3 text-Heading04 font-medium">
+              <h1 className="mb-3 text-Heading04 font-medium max-sm:text-BodyXL">
                 {selectProduct.name}
               </h1>
-              <div className="mb-3 flex w-[48%] items-center">
+              <div className="mb-3 flex w-[48%] items-center max-xl:flex-col max-xl:items-start">
                 <img src="/img/q.png" className="mr-1" alt="" />
                 <p className="mr-3 text-BodySmall text-gray-600">4: Review</p>
                 <p>SKU: 2,51,594</p>
@@ -126,12 +128,12 @@ const SoloProductpage = () => {
                 <Button
                   size="large"
                   onClick={() => onAdd({ ...selectProduct, quantity })}
-                  className="w-full rounded-full bg-Primary px-6 py-2 text-BodyXL font-regular text-white"
+                  className="w-full rounded-full bg-Primary px-6 py-2 text-BodyXL font-regular text-white max-se:text-BodySmall"
                 >
                   Add to Cart
                 </Button>
               </div>
-              <div className="relative">
+              <div className="relative max-md:hidden">
                 <img
                   className="rounded-full hover:bg-Primary"
                   src="/img/Button.svg"
@@ -161,12 +163,11 @@ const SoloProductpage = () => {
         </div>
       </div>
 
-    
-      <div className="flex justify-center text-BodyMedium text-gray-500 border-b ">
+      <div className="flex justify-center border-b text-BodyMedium text-gray-500">
         <button
           className={`${
             activeTab === "description"
-              ? " border-b  border-Primary text-black"
+              ? "border-b border-Primary text-black"
               : ""
           } p-2`}
           onClick={() => setActivetab("description")}
@@ -193,9 +194,8 @@ const SoloProductpage = () => {
         </button>
       </div>
 
-    
       {activeTab === "description" && (
-        <article className="grid grid-cols-2 text-BodySmall font-regular text-gray-500 gap-[136px] mt-10">
+        <article className="mt-10 grid grid-cols-2 gap-[136px] text-BodySmall font-regular text-gray-500 max-xl:flex max-xl:gap-0 max-xl:p-4">
           <div className="grid gap-y-5">
             <p>
               Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at
@@ -217,7 +217,10 @@ const SoloProductpage = () => {
             </p>
             <ul>
               {pluses.map((plus) => (
-                <li key={plus} className="mb-3 flex items-center last-of-type:m-0">
+                <li
+                  key={plus}
+                  className="mb-3 flex items-center last-of-type:m-0"
+                >
                   <img className="mr-1" src="/img/Check.svg" alt="" />
                   {plus}
                 </li>
@@ -229,92 +232,95 @@ const SoloProductpage = () => {
             </p>
           </div>
           <div>
-  
-    <section className="w-[536px]">
-      <img src="/img/Video.png" alt="video" />
-      <div className="mt-3 flex justify-around rounded-md border-2 border-gray-100 p-4">
-        <div className="flex">
-          <img className="mr-2" src="/img/discount.svg" alt="discount" />
-          <span>
-            <p className="font-medium text-black">64% Discount</p>
-            <p>Save your 64% money with us</p>
-          </span>
-        </div>
-        <div className="flex">
-          <img className="mr-2" src="/img/organic.svg" alt="organic" />
-          <span>
-            <p className="font-medium text-black">100% Organic</p>
-            <p>100% Organic Vegetables</p>
-          </span>
-        </div>
-      </div>
-    </section>
- 
-</div>
-
+            <section className="w-[536px] max-xl:hidden">
+              <img src="/img/Video.png" alt="video" />
+              <div className="mt-3 flex justify-around rounded-md border-2 border-gray-100 p-4">
+                <div className="flex">
+                  <img
+                    className="mr-2"
+                    src="/img/discount.svg"
+                    alt="discount"
+                  />
+                  <span>
+                    <p className="font-medium text-black">64% Discount</p>
+                    <p>Save your 64% money with us</p>
+                  </span>
+                </div>
+                <div className="flex">
+                  <img className="mr-2" src="/img/organic.svg" alt="organic" />
+                  <span>
+                    <p className="font-medium text-black">100% Organic</p>
+                    <p>100% Organic Vegetables</p>
+                  </span>
+                </div>
+              </div>
+            </section>
+          </div>
         </article>
       )}
 
       {activeTab === "information" && (
-        <section className="grid grid-cols-2 gap-[136px] mt-10">
+        <section className="mt-10 grid grid-cols-2 gap-[136px] max-xl:flex max-xl:items-center max-xl:justify-center">
           <div className="grid">
-          <ul className="space-y-2 ">
-            <li className="flex">
-              <span className="font-medium w-32">Weight:</span>
-              <span className="text-gray-700">03</span>
-            </li>
-            <li className="flex">
-              <span className="font-medium w-32">Color:</span>
-              <span className="text-gray-700">Green</span>
-            </li>
-            <li className="flex">
-              <span className="font-medium w-32">Type:</span>
-              <span className="text-gray-700">{selectProduct.type}</span>
-            </li>
-            <li className="flex">
-              <span className="font-medium w-32">Category:</span>
-              <span className="text-gray-700">Vegetables</span>
-            </li>
-            <li className="flex">
-              <span className="font-medium w-32">Stock Status:</span>
-              <span className="text-gray-700">Available (5,413)</span>
-            </li>
-            <li className="flex">
-              <span className="font-medium w-32">Tags:</span>
-              <span className="text-gray-700">
-                {selectProduct.tags.join(", ")}
-              </span>
-            </li>
-          </ul>
+            <ul className="space-y-2">
+              <li className="flex">
+                <span className="w-32 font-medium">Weight:</span>
+                <span className="text-gray-700">03</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 font-medium">Color:</span>
+                <span className="text-gray-700">Green</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 font-medium">Type:</span>
+                <span className="text-gray-700">{selectProduct.type}</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 font-medium">Category:</span>
+                <span className="text-gray-700">Vegetables</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 font-medium">Stock Status:</span>
+                <span className="text-gray-700">Available (5,413)</span>
+              </li>
+              <li className="flex">
+                <span className="w-32 font-medium">Tags:</span>
+                <span className="text-gray-700">
+                  {selectProduct.tags.join(", ")}
+                </span>
+              </li>
+            </ul>
           </div>
-          <section className="w-[536px]">
-      <img src="/img/Video.png" alt="video" />
-      <div className="mt-3 flex justify-around rounded-md border-2 border-gray-100 p-4">
-        <div className="flex">
-          <img className="mr-2" src="/img/discount.svg" alt="discount" />
-          <span>
-            <p className="font-medium text-black">64% Discount</p>
-            <p>Save your 64% money with us</p>
-          </span>
-        </div>
-        <div className="flex">
-          <img className="mr-2" src="/img/organic.svg" alt="organic" />
-          <span>
-            <p className="font-medium text-black">100% Organic</p>
-            <p>100% Organic Vegetables</p>
-          </span>
-        </div>
-      </div>
-    </section>
+          <section className="w-[536px] max-xl:hidden">
+            <img src="/img/Video.png" alt="video" />
+            <div className="mt-3 flex justify-around rounded-md border-2 border-gray-100 p-4">
+              <div className="flex">
+                <img className="mr-2" src="/img/discount.svg" alt="discount" />
+                <span>
+                  <p className="font-medium text-black">64% Discount</p>
+                  <p>Save your 64% money with us</p>
+                </span>
+              </div>
+              <div className="flex">
+                <img className="mr-2" src="/img/organic.svg" alt="organic" />
+                <span>
+                  <p className="font-medium text-black">100% Organic</p>
+                  <p>100% Organic Vegetables</p>
+                </span>
+              </div>
+            </div>
+          </section>
         </section>
       )}
 
-     
-      {activeTab === "feedback" && 
-      <section className="w-[65%] mt-5">
-        <Comments/>
-        </section>}
-        <h1 className="mt-[80px] text-Heading05 text-gray-900 font-semibold text-center mb-5">Related Products</h1>
+      {activeTab === "feedback" && (
+        <section className="mt-5 w-[65%] max-sm:w-[80%] max-xl:m-auto">
+          <Comments />
+        </section>
+      )}
+      <h1 className="mb-5 mt-[80px] text-center text-Heading05 font-semibold text-gray-900">
+        Related Products
+      </h1>
     </section>
   );
 };
